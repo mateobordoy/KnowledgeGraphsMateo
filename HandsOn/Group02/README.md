@@ -1,7 +1,7 @@
 # Group 02
 
 
-Anton Pogromskyy - anton-p0g
-Jose Ma - JoseMa8888
-Oliver Anderson Llorens - oliverAnderson18
-José Luis García Arocas - josegarcia058
+Anton Pogromskyy - anton-p0g <br />
+Jose Ma - JoseMa8888 <br />
+Oliver Anderson Llorens - oliverAnderson18 <br />
+José Luis García Arocas - josegarcia058 <br />
