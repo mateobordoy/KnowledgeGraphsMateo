@@ -23,4 +23,4 @@
 
 ## Comments on the self-assessment
 
-Because it's our first time doing this kind of work it's possible that we misunderstood some parts of the assignment or that we didn't know how to proceed properly.
+Since it's our first time doing this kind of work it's possible that we misunderstood some parts of the assignment or that we didn't know how to proceed properly.
