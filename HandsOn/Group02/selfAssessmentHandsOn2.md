@@ -4,8 +4,8 @@
 
 **The “analysis.html” file:**
 
-- [ ] Includes the potential license of the dataset to be generated
-- [ ] Includes the resource naming strategy
+- [x] Includes the potential license of the dataset to be generated
+- [x] Includes the resource naming strategy
 
 **The resource naming strategy:**
 
@@ -31,4 +31,4 @@
 - [ ] Contains at least one class that will be used to link to other entities
 
 ## Comments on the self-assessment
-_(If required)_
+El HTML Analysis.html usa imágenes que se localizan en imgs_analysis.
