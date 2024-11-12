@@ -1,0 +1,55 @@
+[
+    {
+      "op": "core/blank-down",
+      "engineConfig": {
+        "facets": [],
+        "mode": "row-based"
+      },
+      "columnName": "CODIGO_ESTACION",
+      "description": "Blank down cells in column CODIGO_ESTACION"
+    },
+    {
+      "op": "core/blank-down",
+      "engineConfig": {
+        "facets": [],
+        "mode": "record-based"
+      },
+      "columnName": "NOMBRE_ESTACION",
+      "description": "Blank down cells in column NOMBRE_ESTACION"
+    },
+    {
+      "op": "core/text-transform",
+      "engineConfig": {
+        "facets": [],
+        "mode": "record-based"
+      },
+      "columnName": "VIAJEROS_SUBIDOS",
+      "expression": "value.toNumber()",
+      "onError": "keep-original",
+      "repeat": false,
+      "repeatCount": 10,
+      "description": "Text transform on cells in column VIAJEROS_SUBIDOS using expression value.toNumber()"
+    },
+    {
+      "op": "core/text-transform",
+      "engineConfig": {
+        "facets": [],
+        "mode": "record-based"
+      },
+      "columnName": "VIAJEROS_BAJADOS",
+      "expression": "value.toNumber()",
+      "onError": "keep-original",
+      "repeat": false,
+      "repeatCount": 10,
+      "description": "Text transform on cells in column VIAJEROS_BAJADOS using expression value.toNumber()"
+    },
+    {
+      "op": "core/blank-down",
+      "engineConfig": {
+        "facets": [],
+        "mode": "record-based"
+      },
+      "columnName": "NUCLEO_CERCANIAS",
+      "description": "Blank down cells in column NUCLEO_CERCANIAS"
+    }
+  ]
