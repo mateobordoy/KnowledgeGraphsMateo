@@ -24,11 +24,8 @@
 <http://www.owl-ontologies.com/ns#IdVehiculo> rdf:type owl:Class ;
     rdfs:label "Id Vehículo" .
 
-<http://www.owl-ontologies.com/ns#TipoVehiculo> rdf:type owl:Class ;
-    rdfs:label "Tipo Vehículo" .
-
-<http://www.owl-ontologies.com/ns#TipoDeEnchufe> rdf:type owl:Class ;
-    rdfs:label "Tipo de Enchufe" .
+<http://www.owl-ontologies.com/ns#PotenciaDeEnchufe> rdf:type owl:Class ;
+    rdfs:label "Potencia del enchufe" .
 
 <http://www.owl-ontologies.com/ns#esUn> rdf:type owl:ObjectProperty ;
     rdfs:label "es un" ;
@@ -38,7 +35,7 @@
 <http://www.owl-ontologies.com/ns#esDe> rdf:type owl:ObjectProperty ;
     rdfs:label "es de" ;
     rdfs:domain <http://www.owl-ontologies.com/ns#IdPuntoDeRecarga> ;
-    rdfs:range <http://www.owl-ontologies.com/ns#TipoDeEnchufe> .
+    rdfs:range <http://www.owl-ontologies.com/ns#PotenciaDeEnchufe> .
 
 <http://www.owl-ontologies.com/ns#estaEn> rdf:type owl:ObjectProperty ;
     rdfs:label "está en" ;
@@ -59,3 +56,13 @@
     rdfs:label "número de equipos" ;
     rdfs:domain <http://www.owl-ontologies.com/ns#IdPuntoDeRecarga> ;
     rdfs:range xsd:integer .
+
+<http://www.owl-ontologies.com/ns#latitud> rdf:type owl:DatatypeProperty ;
+    rdfs:label "Latitud" ;
+    rdfs:domain <http://www.owl-ontologies.com/ns#Barrio> ;
+    rdfs:range xsd:decimal .
+
+<http://www.owl-ontologies.com/ns#longitud> rdf:type owl:DatatypeProperty ;
+    rdfs:label "Longitud" ;
+    rdfs:domain <http://www.owl-ontologies.com/ns#Barrio> ;
+    rdfs:range xsd:decimal .
