@@ -1,0 +1,250 @@
+[
+  {
+    "op": "core/column-removal",
+    "columnName": "municipio_codigo",
+    "description": "Remove column municipio_codigo"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_portal_numero",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_portal_numero using expression value.toNumber()"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "direccion_piso",
+    "description": "Remove column direccion_piso"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "direccion_puerta",
+    "description": "Remove column direccion_puerta"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_codigo_postal",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_codigo_postal using expression value.toNumber()"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "direccion_longitud",
+    "description": "Remove column direccion_longitud"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "direccion_latitud",
+    "description": "Remove column direccion_latitud"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "horario_acceso",
+    "description": "Remove column horario_acceso"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_coordenada_x",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_coordenada_x using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_coordenada_y",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_coordenada_y using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_coordenada_y",
+    "expression": "value.toString()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_coordenada_y using expression value.toString()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_coordenada_y",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_coordenada_y using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_via_codigo",
+    "expression": "value.toLowercase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_via_codigo using expression value.toLowercase()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_via_codigo",
+    "expression": "grel:value.toLowercase().substring(0,1).toUppercase() + value.toLowercase().substring(1)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_via_codigo using expression grel:value.toLowercase().substring(0,1).toUppercase() + value.toLowercase().substring(1)"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "direccion_ubicacion",
+    "description": "Remove column direccion_ubicacion"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "direccion_via_codigo",
+    "expression": "grel:cells[\"direccion_via_codigo\"].value + \" \" + cells[\"direccion_via_nombre\"].value + \", \" + cells[\"direccion_portal_numero\"].value + \", \" +cells[\"direccion_codigo_postal\"].value + \", \" + cells[\"municipio_nombre\"].value",
+    "onError": "set-to-blank",
+    "newColumnName": "Direccion_completa",
+    "columnInsertIndex": 4,
+    "description": "Create column Direccion_completa at index 4 based on column direccion_via_codigo using expression grel:cells[\"direccion_via_codigo\"].value + \" \" + cells[\"direccion_via_nombre\"].value + \", \" + cells[\"direccion_portal_numero\"].value + \", \" +cells[\"direccion_codigo_postal\"].value + \", \" + cells[\"municipio_nombre\"].value"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "Direccion_completa",
+    "index": 3,
+    "description": "Move column Direccion_completa to position 3"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "Direccion_completa",
+    "index": 2,
+    "description": "Move column Direccion_completa to position 2"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Direccion_completa",
+    "newColumnName": "direccion_completa",
+    "description": "Rename column Direccion_completa to direccion_completa"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_via_nombre",
+    "expression": "value.toString()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_via_nombre using expression value.toString()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_via_codigo",
+    "expression": "value.toString()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_via_codigo using expression value.toString()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "municipio_nombre",
+    "expression": "value.toString()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column municipio_nombre using expression value.toString()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_completa",
+    "expression": "value.toString()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_completa using expression value.toString()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "tipo_titularidad",
+    "expression": "value.toString()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column tipo_titularidad using expression value.toString()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "direccion_completa",
+    "expression": "join ([cells['municipio_nombre'].value,cells['direccion_via_codigo'].value,cells['direccion_via_nombre'].value,cells['direccion_portal_numero'].value,cells['direccion_codigo_postal'].value],', ')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column direccion_completa using expression join ([cells['municipio_nombre'].value,cells['direccion_via_codigo'].value,cells['direccion_via_nombre'].value,cells['direccion_portal_numero'].value,cells['direccion_codigo_postal'].value],', ')"
+  }
+]
