@@ -144,9 +144,9 @@ cls:Fisioterapia a owl:Class ;
     rdfs:subClassOf cls:Especialidad ;
     rdfs:label "Fisioterapia" .
 
-cls:MedicinaInterna a owl:Class ;
+cls:MedicinaGeneral a owl:Class ;
     rdfs:subClassOf cls:Especialidad ;
-    rdfs:label "Medicina interna" .
+    rdfs:label "Medicina general/de familia" .
 
 cls:Neumologia a owl:Class ;
     rdfs:subClassOf cls:Especialidad ;

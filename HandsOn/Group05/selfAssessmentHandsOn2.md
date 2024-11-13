@@ -18,7 +18,7 @@
 
 - [X] Uses the .ttl extension
 - [X] Is serialized in the Turtle format
-- [X]] Follows the resource naming strategy
+- [X] Follows the resource naming strategy
 - [X] Contains at least one class
 - [X] Contains at least one object property (where the value of the property is a resource)
 - [X] Contains at least one datatype property (where the value of the property is a string literal, usually typed)
