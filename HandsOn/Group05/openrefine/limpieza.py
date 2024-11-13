@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('centros-servicios-establecimientos-sanitarios-updated.csv')
+df = pd.read_csv('centros_sanitarios-updated.csv')
 
 df_grouped = df.groupby('centro_nro_registro').agg({
     'centro_tipo': 'first',
@@ -36,4 +36,4 @@ df_grouped = df.groupby('centro_nro_registro').agg({
     'localizacion_coordenada_y': 'first'
 }).reset_index()
 
-df_grouped.to_csv("centros-servicios-establecimientos-sanitarios-updated-updated.csv")
+df_grouped.to_csv("centros_sanitarios-updated-updated.csv")
