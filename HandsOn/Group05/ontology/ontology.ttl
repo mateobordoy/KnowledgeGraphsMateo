@@ -30,6 +30,7 @@ pr:especializadoEn rdf:type owl:ObjectProperty ;
 
 
 pr:perteneceA rdf:type owl:ObjectProperty ;
+		rdfs:domain cls:Direccion ;
 		rdfs:range cls:Municipio ;
 		rdfs:label "pertenece a" .
 
@@ -88,7 +89,7 @@ pr:idCentro rdf:type owl:DatatypeProperty ;
 
 
 pr:tipoCentro rdf:type owl:DatatypeProperty ;
-	rdfs:domain cls:CentrodeSalud ;
+		rdfs:domain cls:CentrodeSalud ;
 		rdfs:range xsd:string ;
 		rdfs:label "tipo centro" .
 
