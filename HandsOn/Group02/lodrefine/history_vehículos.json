@@ -491,9 +491,59 @@
     "description": "Remove column TIPO_PERSONA"
   },
   {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "COD_DISTRITO",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "COD_DISTRITO+BARRIO",
+    "columnInsertIndex": 1,
+    "description": "Create column COD_DISTRITO+BARRIO at index 1 based on column COD_DISTRITO using expression grel:value"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "COD_DISTRITO+BARRIO",
+    "expression": "join ([coalesce(cells['COD_DISTRITO+BARRIO'].value,''),coalesce(cells['COD_BARRIO'].value,'')],'')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column COD_DISTRITO+BARRIO using expression join ([coalesce(cells['COD_DISTRITO+BARRIO'].value,''),coalesce(cells['COD_BARRIO'].value,'')],'')"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "COD_DISTRITO+BARRIO",
+    "expression": "grel:value + (round(random() * (1000000 - 1)) + 1)",
+    "onError": "set-to-blank",
+    "newColumnName": "ID",
+    "columnInsertIndex": 2,
+    "description": "Create column ID at index 2 based on column COD_DISTRITO+BARRIO using expression grel:value + (round(random() * (1000000 - 1)) + 1)"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "ID",
+    "index": 0,
+    "description": "Move column ID to position 0"
+  },
+  {
     "op": "core/column-removal",
     "columnName": "COD_DISTRITO",
     "description": "Remove column COD_DISTRITO"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "COD_DISTRITO+BARRIO",
+    "description": "Remove column COD_DISTRITO+BARRIO"
   },
   {
     "op": "core/column-removal",
