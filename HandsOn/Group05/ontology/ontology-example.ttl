@@ -1,6 +1,7 @@
 @prefix : <http://www.knowledgegraphs/ontology/> .
-@prefix ns: <http://www.knowledgegraphs.com/ontology/centrosydesfibriladores#> .
-@prefix rs: <http://www.knowledgegraphs.com/resource/> .
+@prefix cls: <http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/classes#> .
+@prefix pr: <http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/properties#> .
+@prefix is: <http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -9,64 +10,49 @@
 
 : a owl:Ontology .
 
-rs:MedicinaGeneral a ns:Especialidad ;
-    rdfs:label "Medina general" .
+is:EndocrinologiaCH0018 a cls:Endocrinologia ;
+    rdfs:label "Endocrinología CH0018" .
 
-rs:Podologia a ns:Especialidad ;
-    rdfs:label "Podología" .
-
-rs:Fisioterapia a ns:Especialidad ;
-    rdfs:label "Fisioterapia" .
-
-rs:Enfermeria a ns:Especialidad ;
-    rdfs:label "Enfermería" .
-
-rs:TerapiaOcupacional a ns:Especialidad ;
-    rdfs:label "Terapia ocupacional" .
-
-rs:Parla a ns:Municipio ;
+is:Parla a cls:Municipio ;
     rdfs:label "Parla" .
 
-rs:Direccion1 a ns:Direccion ;
+is:Direccion1 a cls:Direccion ;
     rdfs:label "Direccion 1" ;
-    ns:perteneceA rs:Parla ;
-    ns:tipoDireccion "Calle"^^xsd:string ;
-    ns:nombreDireccion "Pinto"^^xsd:string ;
-    ns:numeroDireccion "58"^^xsd:integer ;
-    ns:codigoPostal "28982"^^xsd:integer ;
-    ns:coordenadaX "435029"^^xsd:float ;
-    ns:coordenadaY "445612"^^xsd:float .
+    pr:perteneceA is:Parla ;
+    pr:tipoDireccion "Calle"^^xsd:string ;
+    pr:nombreDireccion "de Juan Bravo"^^xsd:string ;
+    pr:numeroDireccion 49 ;
+    pr:codigoPostal 28006 ;
+    pr:coordenadaX 442633.0 ;
+    pr:coordenadaY 447600.0 .
 
-rs:CentrodeSalud1 rdf:type ns:CentrodeSalud ;
+is:CentrodeSalud1 rdf:type cls:CentrodeSalud ;
     rdfs:label "Centro de salud 1" ;
-    ns:especializadoEn rs:MedicinaGeneral ,
-                       rs:Podologia ,
-                       rs:Fisioterapia ,
-                       rs:Enfermeria ,
-                       rs:TerapiaOcupacional ;
-    ns:localizadoEn rs:Direccion1 ;
-    ns:idCentro "SS01607"^^xsd:string .
-    
-rs:Establecimiento1 a ns:Establecimiento ;
-    rdfs:label "Establecimiento 1" ;
-    ns:tipoEstablecimiento "Otros"^^xsd:string ;
-    ns:tipoTitularidad "Privada"^^xsd:string .
+    pr:especializadoEn is:EndocrinologiaCH0018 ;
+    pr:localizadoEn is:Direccion1 ;
+    pr:idCentro "SS01607"^^xsd:string ;
+    pr:tipoCentro "Hospital general"^^xsd:string .
 
-rs:Madrid a ns:Municipio ;
+is:Establecimiento1 a cls:Establecimiento ;
+    rdfs:label "Establecimiento 1" ;
+    pr:tipoEstablecimiento "Otros"^^xsd:string ;
+    pr:tipoTitularidad "Privada"^^xsd:string .
+
+is:Madrid a cls:Municipio ;
     rdfs:label "Madrid" .
 
-rs:Direccion2 a ns:Direccion ;
+is:Direccion2 a cls:Direccion ;
     rdfs:label "Direccion 2" ;
-    ns:perteneceA rs:Madrid ;
-    ns:tipoDireccion "Calle"^^xsd:string ;
-    ns:nombreDireccion "de Suero de Quiñones"^^xsd:string ;
-    ns:numeroDireccion "34"^^xsd:integer ;
-    ns:codigoPostal "28002"^^xsd:integer ;
-    ns:coordenadaX "443575"^^xsd:float ;
-    ns:coordenadaY "4477573"^^xsd:float .
+    pr:perteneceA is:Madrid ;
+    pr:tipoDireccion "Calle"^^xsd:string ;
+    pr:nombreDireccion "de Suero de Quiñones"^^xsd:string ;
+    pr:numeroDireccion 34 ;
+    pr:codigoPostal 28002 ;
+    pr:coordenadaX 443575.0 ;
+    pr:coordenadaY 4477573.0 .
 
-rs:Desfibrilador1 a ns:Desfibrilador ;
+is:Desfibrilador1 a cls:Desfibrilador ;
     rdfs:label "Desfibrilador 1" ;
-    ns:albergadoEn rs:Establecimiento1 ;
-    ns:localizadoEn rs:Direccion2 ;
-    ns:idDesfibrilador "2018-1577"^^xsd:string .
+    pr:albergadoEn is:Establecimiento1 ;
+    pr:localizadoEn is:Direccion2 ;
+    pr:idDesfibrilador "2018-1577"^^xsd:string .
