@@ -45,7 +45,7 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>PK</td>
+                    <td>EntidadWifi</td>
                     <td>String</td>
                     <td>Unique values</td>
                     <td></td>
@@ -57,13 +57,6 @@
                     <td>Unique values</td>
                     <td></td>
                     <td>Nombre de la entidad</td>
-                  </tr>
-                  <tr>
-                    <td>DESCRIPCION-ENTIDAD</td>
-                    <td>string</td>
-                    <td>Not unique, empty values </td>
-                    <td></td>
-                    <td>Descripcion de la entidad donde se ubican los puntos wifi</td>
                   </tr>
                   <tr>
                     <td>HORARIO</td>
@@ -84,15 +77,12 @@
                     <td>string</td>
                     <td>Not unique, empty values </td>
                     <td></td>
-                    <td>Estaciones de metro e indicacion de lineas</td>
-                  </tr>
-                  <tr>
-                    <td>DESCRIPCION</td>
-                    <td>String</td>
+                    <td>Tipo de transporte usado</td>
+                  <tr>Linea</tr>
+                    <td>string</td>
                     <td>Not unique, empty values </td>
                     <td></td>
-                    <td>Informacion adicional</td>
-                  </tr>
+                    <td>Estaciones del transporte e indicacion de lineas</td> 
                   <tr>
                     <td>ACCESIBILIDAD</td>
                     <td>String</td>
@@ -128,7 +118,7 @@
                     <td>String</td>
                     <td>Not unique</td>
                     <td>Tiene valores no reconocidos en la documentacion</td>
-                    <td>S/N, KM, V</td>
+                    <td>S/N:Sin número, KM:Kilometro, V:Número</td>
                   </tr>
                   <tr>
                     <td>NUM</td>
@@ -136,34 +126,6 @@
                     <td>0-350</td>
                     <td>Empty values</td>
                     <td>Numero de equipamiento en la via</td>
-                  </tr>
-                  <tr>
-                    <td>PLANTA</td>
-                    <td>String</td>
-                    <td>Not unique, empty values</td>
-                    <td></td>
-                    <td>Nivel que ocupa el inmueble</td>
-                  </tr>
-                  <tr>
-                    <td>Puerta</td>
-                    <td></td>
-                    <td>Empty values</td>
-                    <td>All empty</td>
-                    <td>Puerta que ocupa el inmueble</td>
-                  </tr>
-                  <tr>
-                    <td>ESCALERAS</td>
-                    <td></td>
-                    <td>Empty values</td>
-                    <td>All empty</td>
-                    <td>Escalerad de acceso</td>
-                  </tr>
-                  <tr>
-                    <td>ORIENTACION</td>
-                    <td>String</td>
-                    <td>Not unique, empty values</td>
-                    <td></td>
-                    <td>Proporciona informacion para acceder a la direccion</td>
                   </tr>
                   <tr>
                     <td>LOCALIDAD</td>
@@ -251,13 +213,6 @@
                     <td>Telefonos de contacto</td>
                   </tr>
                   <tr>
-                    <td>FAX</td>
-                    <td>String</td>
-                    <td>Empty values</td>
-                    <td>Only one value</td>
-                    <td>Numero de  fax para contacto</td>
-                  </tr>
-                  <tr>
                     <td>EMAIL</td>
                     <td>String</td>
                     <td>Not unique, empty values</td>
@@ -309,49 +264,39 @@
                     <li>Telefono</li>
                     <li>Email</li>
                     <li>TipoEntidadWifi</li>
-                    <li>Nombre</li>
+                    <li>Nombre entidad</li>
                     <li>Provincia</li>
                     <li>URLDeContenido</li>
-                    <li>NombreVia</li>
+                    <li>Via</li>
                     <li>Transporte</li>
-                    <li>NombreEntidadWifi</li>
-                    <li>PK</li>
-                    <li>FAX</li>
                     <li>Latitud</li>
                     <li>Longitud</li>
+                    <li>Linea</li>
                 </ul>
                 <li>Las relaciones que vamos a utilizar son las siguientes</li>
                 <ul>
-                  <li>descripcion</li>
-                  <li>codigoPostal</li>
                   <li>accesibilidad</li>
                   <li>codigoDistrito</li>
                   <li>codigoBarrio</li>
-                  <li>descripcionEntidad</li>
                   <li>equipamiento</li>
-                  <li>escaleras</li>
                   <li>estarEnBarrio</li>
                   <li>estarEnCiudad</li>
                   <li>estarEnDistrito</li>
                   <li>estarEnDistrito</li>
                   <li>estarEnVia</li>
                   <li>horario</li>
+                  <li>linea</li>
                   <li>llegarConTransporte</li>
                   <li>numero</li>
-                  <li>orientacion</li>
-                  <li>planta</li>
-                  <li>puerta</li>
                   <li>serDeTipo</li>
                   <li>tenerCoordenadaX</li>
                   <li>tenerCoordenadaY</li>
                   <li>tenerEmail</li>
-                  <li>tenerFAX</li>
                   <li>tenerLatitud</li>
                   <li>tenerLongitud</li>
                   <li>tenerNombre</li>
                   <li>tenerTelefono</li>
                   <li>tenerURL</li>
-                  <li>tipoDeVia</li>
                   <li>tipoNum</li>
 
 
