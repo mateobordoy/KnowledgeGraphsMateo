@@ -234,7 +234,6 @@
     ].
 
 
-
 <#CargadoresMapping>
     rml:logicalSource [
         rml:source "dataset_cargadores-updated.csv";
@@ -295,6 +294,21 @@
         rml:referenceFormulation ql:CSV
     ];
     rr:subjectMap [
+        rr:template "http://example.org/distritos/{BARRIO}"
+    ];
+    rr:predicateObjectMap [
+        rr:predicate rdf:type;
+        rr:objectMap [
+            rr:parentTriplesMap <#BarrioClass>
+        ]
+    ].
+
+<#BarriosDeDistritosMapping>
+    rml:logicalSource [
+        rml:source "dataset_cargadores-updated.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+    rr:subjectMap [
         rr:template "http://example.org/barrios/{BARRIO}"
     ];
     rr:predicateObjectMap [
@@ -311,6 +325,12 @@
     ];
     rr:subjectMap [
         rr:template "http://example.org/distritos/{DISTRITO}"
+    ];
+    rr:predicateObjectMap [
+        rr:predicate rdf:type;
+        rr:objectMap [
+            rr:parentTriplesMap <#DistritoClass>
+        ]
     ].
 
 <#OperadoresMapping>
@@ -320,4 +340,10 @@
     ];
     rr:subjectMap [
         rr:template "http://example.org/operadores/{OPERADOR}"
+    ];
+    rr:predicateObjectMap [
+        rr:predicate rdf:type;
+        rr:objectMap [
+            rr:parentTriplesMap <#OperadorClass>
+        ]
     ].
