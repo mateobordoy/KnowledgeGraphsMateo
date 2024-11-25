@@ -239,6 +239,10 @@
         rml:source "cargadores-updated.csv";
         rml:referenceFormulation ql:CSV
     ];
+    rr:predicateObjectMap [
+        rr:predicate rdf:type;
+        rr:object ns:IdPuntoDeRecarga;
+    ];
     rr:subjectMap [
         rr:template "http://example.org/cargadores/{OID_}"
     ];
