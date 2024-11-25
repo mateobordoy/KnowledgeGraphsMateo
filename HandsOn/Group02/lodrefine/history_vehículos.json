@@ -720,5 +720,98 @@
       }
     ],
     "description": "Mass edit cells in column BARRIO"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "CLASIFICACION_AMBIENTAL",
+    "expression": "grel:value.replace(\" \",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column CLASIFICACION_AMBIENTAL using expression grel:value.replace(\" \",\"\")"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "CLASIFICACION_AMBIENTAL",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "SindistintivoAmbiental"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "SinDistintivoAmbiental"
+      }
+    ],
+    "description": "Mass edit cells in column CLASIFICACION_AMBIENTAL"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "CLASIFICACION_AMBIENTAL",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Sinclasificacionambiental"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "SinDistintivoAmbiental"
+      }
+    ],
+    "description": "Mass edit cells in column CLASIFICACION_AMBIENTAL"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "TIPO_CARBURANTE",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "HIBRIDO ENCHUFABLES PHEV"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "PHEV"
+      }
+    ],
+    "description": "Mass edit cells in column TIPO_CARBURANTE"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "TIPO_CARBURANTE",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "ELECTRICOS RANGO EXTENDIDO"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "ELECTRICOS-RANGO-EXTENDIDO"
+      }
+    ],
+    "description": "Mass edit cells in column TIPO_CARBURANTE"
   }
 ]
