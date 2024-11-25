@@ -98,5 +98,24 @@
     "repeat": false,
     "repeatCount": 10,
     "description": "Text transform on cells in column calle using expression grel:value.replace(/,(?!\\d)/, '')"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "distrito",
+    "expression": "grel:\"B-\" + (row.index + 1)",
+    "onError": "set-to-blank",
+    "newColumnName": "ID",
+    "columnInsertIndex": 1,
+    "description": "Create column ID at index 1 based on column distrito using expression grel:\"B-\" + (row.index + 1)"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "ID",
+    "index": 0,
+    "description": "Move column ID to position 0"
   }
 ]

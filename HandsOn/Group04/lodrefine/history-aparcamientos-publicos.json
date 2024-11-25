@@ -919,5 +919,24 @@
     "oldColumnName": "DESCRIPCION 1",
     "newColumnName": "PLAZAS",
     "description": "Rename column DESCRIPCION 1 to PLAZAS"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "NOMBRE",
+    "expression": "grel:\"A-\" + (row.index + 1)",
+    "onError": "set-to-blank",
+    "newColumnName": "ID",
+    "columnInsertIndex": 1,
+    "description": "Create column ID at index 1 based on column NOMBRE using expression grel:\"A-\" + (row.index + 1)"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "ID",
+    "index": 0,
+    "description": "Move column ID to position 0"
   }
 ]

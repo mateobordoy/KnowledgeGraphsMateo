@@ -207,5 +207,24 @@
     "repeat": false,
     "repeatCount": 10,
     "description": "Text transform on cells in column Línea / Batería using expression grel:if(isNull(value), \"unknown\", value)"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "Distrito",
+    "expression": "grel:\"C-\" + (row.index + 1)",
+    "onError": "set-to-blank",
+    "newColumnName": "ID",
+    "columnInsertIndex": 1,
+    "description": "Create column ID at index 1 based on column Distrito using expression grel:\"C-\" + (row.index + 1)"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "ID",
+    "index": 0,
+    "description": "Move column ID to position 0"
   }
 ]
