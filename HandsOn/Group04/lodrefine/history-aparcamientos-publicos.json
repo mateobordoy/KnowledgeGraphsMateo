@@ -938,5 +938,11 @@
     "columnName": "ID",
     "index": 0,
     "description": "Move column ID to position 0"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "calle",
+    "newColumnName": "DIRECCION",
+    "description": "Rename column calle to DIRECCION"
   }
 ]

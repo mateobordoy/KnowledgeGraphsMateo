@@ -226,5 +226,41 @@
     "columnName": "ID",
     "index": 0,
     "description": "Move column ID to position 0"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Distrito",
+    "newColumnName": "DISTRITO",
+    "description": "Rename column Distrito to DISTRITO"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Barrio",
+    "newColumnName": "BARRIO",
+    "description": "Rename column Barrio to BARRIO"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Dirección",
+    "newColumnName": "DIRECCION",
+    "description": "Rename column Dirección to DIRECCION"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Tipo de Reserva",
+    "newColumnName": "TIPO_DE_RESERVA",
+    "description": "Rename column Tipo de Reserva to TIPO_DE_RESERVA"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Línea / Batería",
+    "newColumnName": "LINEA_BATERIA",
+    "description": "Rename column Línea / Batería to LINEA_BATERIA"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Número de Plazas",
+    "newColumnName": "PLAZAS",
+    "description": "Rename column Número de Plazas to PLAZAS"
   }
 ]

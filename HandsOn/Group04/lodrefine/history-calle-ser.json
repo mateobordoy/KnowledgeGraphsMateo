@@ -117,5 +117,41 @@
     "columnName": "ID",
     "index": 0,
     "description": "Move column ID to position 0"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "distrito",
+    "newColumnName": "DISTRITO",
+    "description": "Rename column distrito to DISTRITO"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "barrio",
+    "newColumnName": "BARRIO",
+    "description": "Rename column barrio to BARRIO"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "calle",
+    "newColumnName": "DIRECCION",
+    "description": "Rename column calle to DIRECCION"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "color",
+    "newColumnName": "COLOR",
+    "description": "Rename column color to COLOR"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "bateria_linea",
+    "newColumnName": "BATERIA_LINEA",
+    "description": "Rename column bateria_linea to BATERIA_LINEA"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "num_plazas",
+    "newColumnName": "PLAZAS",
+    "description": "Rename column num_plazas to PLAZAS"
   }
 ]
