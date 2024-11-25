@@ -1,4 +1,4 @@
-ID,Distrito,Barrio,Dirección,Tipo de Reserva,Línea / Batería,Número de Plazas
+ID,DISTRITO,BARRIO,DIRECCIÓN,TIPO_DE_RESERVA,BATERIA_LINEA,PLAZAS
 C-1,Sin Asignar,Sin Asignar,"CAÑADA REAL DE MERINAS, 136",PMR,Batería,1
 C-2,Sin Asignar,Sin Asignar,"CAÑADA REAL DE MERINAS, 136",PMR,Batería,2
 C-3,Sin Asignar,Sin Asignar,"CARRETERA  DEL VERTEDERO MUNICIPAL VALDEMINGOMEZ, 1",PMR,Línea,1
