@@ -16,6 +16,10 @@ base: a owl:Ontology ;
     owl:versionInfo "0.0.1" ;
     mod:createdWith <https://chowlk.linkeddata.es/> .
 
+tm:Monument a owl:Class ;
+    rdfs:label "Monument" ;
+    rdfs:subClassOf tm:CulturalSite .
+
 tm:Museum a owl:Class ;
     rdfs:label "Museum" ;
     rdfs:subClassOf tm:CulturalSite .
@@ -51,10 +55,9 @@ tm:hasAudience a owl:DatatypeProperty ;
     rdfs:label "has audience" ;
     rdfs:range xsd:string .
 
-tm:hasAuthor a owl:ObjectProperty ;
+tm:hasAuthor a owl:DatatypeProperty ;
     rdfs:label "has author" ;
-    rdfs:domain tm:Monument ;
-    rdfs:range tm:Author .
+    rdfs:range xsd:string .
 
 tm:hasComment a owl:DatatypeProperty ;
     rdfs:label "has comment" ;
@@ -80,10 +83,9 @@ tm:hasDescription a owl:DatatypeProperty ;
     rdfs:label "has description" ;
     rdfs:range xsd:string .
 
-tm:hasDesigner a owl:ObjectProperty ;
+tm:hasDesigner a owl:DatatypeProperty ;
     rdfs:label "has designer" ;
-    rdfs:domain tm:Lighting ;
-    rdfs:range tm:Author .
+    rdfs:range xsd:string .
 
 tm:hasDistrict a owl:ObjectProperty ;
     rdfs:label "has district" ;
@@ -104,7 +106,8 @@ tm:hasDoor a owl:DatatypeProperty ;
 
 tm:hasElementId a owl:DatatypeProperty ;
     rdfs:label "has element id" ;
-    rdfs:range xsd:integer .
+    rdfs:range xsd:integer,
+        xsd:string .
 
 tm:hasEmail a owl:DatatypeProperty ;
     rdfs:label "has email" ;
@@ -199,6 +202,10 @@ tm:hasNumberOfElements a owl:DatatypeProperty ;
     rdfs:label "has number of elements" ;
     rdfs:range xsd:integer .
 
+tm:hasNumberType a owl:DatatypeProperty ;
+    rdfs:label "has number type" ;
+    rdfs:range xsd:string .
+
 tm:hasOpeningHours a owl:DatatypeProperty ;
     rdfs:label "has opening hours" ;
     rdfs:range xsd:string .
@@ -252,16 +259,16 @@ tm:hasStreet a owl:ObjectProperty ;
     rdfs:domain tm:Location ;
     rdfs:range tm:Street .
 
+tm:hasStreetClass a owl:DatatypeProperty ;
+    rdfs:label "has street class" ;
+    rdfs:range xsd:string .
+
 tm:hasStreetName a owl:DatatypeProperty ;
     rdfs:label "has street name" ;
     rdfs:range xsd:string .
 
 tm:hasStreetNumber a owl:DatatypeProperty ;
     rdfs:label "has street number" ;
-    rdfs:range xsd:integer .
-
-tm:hasStreetNumberType a owl:DatatypeProperty ;
-    rdfs:label "has street number type" ;
     rdfs:range xsd:string .
 
 tm:hasStreetType a owl:DatatypeProperty ;
@@ -320,9 +327,8 @@ tm:Installation a owl:Class ;
     rdfs:label "Installation" ;
     rdfs:subClassOf tm:CulturalSite .
 
-tm:Monument a owl:Class ;
-    rdfs:label "Monument" ;
-    rdfs:subClassOf tm:CulturalSite .
+tm:Lighting a owl:Class ;
+    rdfs:label "Lighting" .
 
 tm:Neighborhood a owl:Class ;
     rdfs:label "Neighborhood" .
@@ -335,12 +341,6 @@ tm:Activity a owl:Class ;
 
 tm:Address a owl:Class ;
     rdfs:label "Address" .
-
-tm:Author a owl:Class ;
-    rdfs:label "Author" .
-
-tm:Lighting a owl:Class ;
-    rdfs:label "Lighting" .
 
 tm:CulturalSite a owl:Class ;
     rdfs:label "Cultural Site" .
