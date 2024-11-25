@@ -958,5 +958,125 @@
     "op": "core/column-removal",
     "columnName": "EMPLAZAMIENTO",
     "description": "Remove column EMPLAZAMIENTO"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OPERADOR",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "GIC (CIRCUTOR)"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "GIC"
+      }
+    ],
+    "description": "Mass edit cells in column OPERADOR"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OPERADOR",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "GIC / CEPSA"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "GIC"
+      }
+    ],
+    "description": "Mass edit cells in column OPERADOR"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OPERADOR",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "GIC/ GALP"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "GIC"
+      }
+    ],
+    "description": "Mass edit cells in column OPERADOR"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OPERADOR",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "ENDESA X SERVICIOS S.L."
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "ENDESA"
+      }
+    ],
+    "description": "Mass edit cells in column OPERADOR"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OPERADOR",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "DRIVE THE CITY"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "DRIVETHECITY"
+      }
+    ],
+    "description": "Mass edit cells in column OPERADOR"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "OPERADOR",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "CC LA VAGUADA"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "CCLAVAGUADA"
+      }
+    ],
+    "description": "Mass edit cells in column OPERADOR"
   }
 ]
