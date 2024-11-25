@@ -236,7 +236,7 @@
 
 <#CargadoresMapping>
     rml:logicalSource [
-        rml:source "dataset_cargadores-updated.csv";
+        rml:source "cargadores-updated.csv";
         rml:referenceFormulation ql:CSV
     ];
     rr:subjectMap [
@@ -290,7 +290,7 @@
 
 <#BarriosMapping>
     rml:logicalSource [
-        rml:source "dataset_cargadores-updated.csv";
+        rml:source "cargadores-updated.csv";
         rml:referenceFormulation ql:CSV
     ];
     rr:subjectMap [
@@ -305,7 +305,7 @@
 
 <#BarriosDeDistritosMapping>
     rml:logicalSource [
-        rml:source "dataset_cargadores-updated.csv";
+        rml:source "cargadores-updated.csv";
         rml:referenceFormulation ql:CSV
     ];
     rr:subjectMap [
@@ -320,7 +320,7 @@
 
 <#DistritosMapping>
     rml:logicalSource [
-        rml:source "dataset_cargadores-updated.csv";
+        rml:source "cargadores-updated.csv";
         rml:referenceFormulation ql:CSV
     ];
     rr:subjectMap [
@@ -335,7 +335,7 @@
 
 <#OperadoresMapping>
     rml:logicalSource [
-        rml:source "dataset_cargadores-updated.csv";
+        rml:source "cargadores-updated.csv";
         rml:referenceFormulation ql:CSV
     ];
     rr:subjectMap [
