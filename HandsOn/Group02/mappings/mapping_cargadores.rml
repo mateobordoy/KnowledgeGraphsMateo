@@ -284,7 +284,8 @@
     rr:predicateObjectMap [
         rr:predicate ns:esDe;
         rr:objectMap [
-            rml:reference "POTENCIA_MAX"
+            rml:reference "POTENCIA_MAX";
+            rr:datatype rdfs:Literal
         ]
     ].
 
@@ -294,7 +295,7 @@
         rml:referenceFormulation ql:CSV
     ];
     rr:subjectMap [
-        rr:template "http://example.org/distritos/{BARRIO}"
+        rr:template "http://example.org/barrios/{BARRIO}"
     ];
     rr:predicateObjectMap [
         rr:predicate rdf:type;

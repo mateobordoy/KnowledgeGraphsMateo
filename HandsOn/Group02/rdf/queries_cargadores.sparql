@@ -34,7 +34,7 @@ SELECT ?cargador WHERE {
     }
 
 SELECT ?cargador WHERE {
-    ?cargador ns:esDe "150 kW"
+    ?cargador ns:esDe "150 kW"^^rdfs:Literal
     }
 
 SELECT ?operador WHERE {
