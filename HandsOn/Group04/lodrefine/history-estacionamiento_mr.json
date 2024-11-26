@@ -254,8 +254,8 @@
   {
     "op": "core/column-rename",
     "oldColumnName": "Línea / Batería",
-    "newColumnName": "LINEA_BATERIA",
-    "description": "Rename column Línea / Batería to LINEA_BATERIA"
+    "newColumnName": "BATERIA_LINEA",
+    "description": "Rename column Línea / Batería to BATERIA_LINEA"
   },
   {
     "op": "core/column-rename",
