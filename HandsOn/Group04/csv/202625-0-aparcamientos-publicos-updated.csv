@@ -1,4 +1,4 @@
-ID,NOMBRE,HORARIO,TRANSPORTE,PLAZAS,ACCESIBILIDAD,DIRECCION,BARRIO,DISTRITO
+ID,NOMBRE,HORARIO,TRANSPORTE,PLAZAS,ACCESIBILIDAD,CALLE,BARRIO,DISTRITO
 A-1,Aparcamiento disuasorio Aviación Española,Abierto 24 horas,Autobuses:      EMT:  Línea 17 (destino Pl. Mayor) y línea 39 (destino Pl. España)  EMT (Líneas nocturnas): N19     Metro:      Aviación Española (L10),344,1,"CALLE FUENTE DE LIMA, 5",LAS AGUILAS,LATINA
 A-2,Aparcamiento disuasorio Estadio Metropolitano Sur ES-02b,Horario de apertura de 6:00 h a 22:00 h los días laborables excepto los días de partido en el estadio Metropolitano,,3011,0,"AVENIDA ARCENTALES, 37",ROSAS,SAN BLAS-CANILLEJAS
 A-3,Aparcamiento disuasorio Fuente de la Mora,Abierto 24 horas,"Autobuses:     EMT:  150      Cercanias:      Estación de cercanias Fuente de la Mora C1, C10      Tranvía:      ML1",368,1,"AVENIDA MANOTERAS, 1",VALDEFUENTES,HORTALEZA

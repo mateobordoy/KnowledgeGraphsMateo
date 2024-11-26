@@ -942,7 +942,7 @@
   {
     "op": "core/column-rename",
     "oldColumnName": "calle",
-    "newColumnName": "DIRECCION",
-    "description": "Rename column calle to DIRECCION"
+    "newColumnName": "CALLE",
+    "description": "Rename column calle to CALLE"
   }
 ]

@@ -242,8 +242,8 @@
   {
     "op": "core/column-rename",
     "oldColumnName": "Dirección",
-    "newColumnName": "DIRECCION",
-    "description": "Rename column Dirección to DIRECCION"
+    "newColumnName": "CALLE",
+    "description": "Rename column Dirección to CALLE"
   },
   {
     "op": "core/column-rename",
