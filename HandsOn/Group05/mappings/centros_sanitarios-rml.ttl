@@ -162,8 +162,8 @@
         rr:objectMap [
             rr:template "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances/instanciaVacunacion"
         ]
-    ];
-</#CentrosSanitariosMapping>
+    ].
+    
 <#DireccionesMapping>
     rml:logicalSource [
         rml:source "centros_sanitarios-updated-updated.csv";
