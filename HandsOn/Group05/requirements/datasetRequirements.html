@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Análisis de Requisitos del Dataset</title>
+</head>
+<body>
+    <h1>Análisis de Requisitos del Dataset</h1>
+
+    <h2>Licencias</h2>
+    <p>Los datasets seleccionados están publicados bajo la <a href="https://creativecommons.org/licenses/by/4.0/">Licencia Creative Commons BY 4.0</a>.</p>
+
+    <h2>Requisitos</h2>
+    <ul>
+        <li><strong>R1: Dominio de ciudad inteligente</strong> - Ambos conjuntos de datos pertenecen al dominio de <em>salud y seguridad pública</em> en el contexto de una ciudad inteligente.</li>
+        <li><strong>R2: Disponibilidad en formato CSV</strong> - Ambos datasets están disponibles en formato CSV.</li>
+        <li><strong>R3: Licencia abierta</strong> - Los datos están bajo una licencia abierta que permite su publicación y reutilización.</li>
+        <li><strong>R4: Datos vinculables</strong> - Los datasets contienen entidades que pueden vincularse a otras fuentes de datos externas. Ejemplos de estos vínculos se describen en la sección siguiente.</li>
+        <li><strong>R5: Documentación (opcional)</strong> - Existe documentación básica proporcionada en el portal de datos de la Comunidad de Madrid.</li>
+        <li><strong>R6: Múltiples fuentes (opcional)</strong> - Los datos provienen de fuentes diversas dentro del sistema de salud pública y de servicios de emergencia.</li>
+    </ul>
+
+    <h2>Entidades Vinculables en los Datasets Seleccionados</h2>
+    <h3>Centros, Servicios y Establecimientos Sanitarios</h3>
+    <ul>
+        <li><strong>Municipio (`municipio_nombre`):</strong> Puede vincularse con otros datasets que contengan información demográfica y de servicios en diferentes municipios, como población o distribución de recursos.</li>
+        <li><strong>Coordenadas Geográficas (`direccion_coordenada_x`, `direccion_coordenada_y`):</strong> Permite la vinculación con sistemas GIS y mapas interactivos que muestren la ubicación de estos centros en el contexto de otros servicios públicos.</li>
+        <li><strong>Dirección y Código Postal:</strong> Vinculable con servicios de mapas o datos de infraestructuras de transporte y comunicación en diferentes zonas.</li>
+    </ul>
+
+    <h3>Desfibriladores Externos</h3>
+    <ul>
+        <li><strong>Ubicación y Accesibilidad:</strong> El dataset incluye direcciones detalladas, coordenadas y horarios de acceso a las ubicaciones de los desfibriladores, lo que permite vincularse con datos de seguridad pública y respuesta a emergencias para un acceso más rápido durante situaciones críticas.</li>
+        <li><strong>Tipo de Establecimiento:</strong> Los diferentes tipos de establecimientos con desfibriladores, como centros educativos, instalaciones de transporte y lugares de trabajo, pueden vincularse con datos de salud pública para analizar y mejorar el acceso público a recursos de emergencia.</li>
+    </ul>
+
+    <h2>Entidades Externas Vinculables</h2>
+    <ul>
+        <li><strong>Datos de Tráfico:</strong> Los datos de tráfico en tiempo real pueden optimizar las rutas de emergencia hacia los desfibriladores para reducir los tiempos de respuesta en casos de paros cardíacos repentinos.</li>
+        <li><strong>Datos Demográficos y de Salud Pública:</strong> Los datos poblacionales y estadísticas de salud en cada municipio pueden ayudar en la planificación y distribución de desfibriladores y otros servicios de salud de emergencia.</li>
+        <li><strong>Infraestructura y Servicios Públicos Relacionados:</strong> Los datos de infraestructura vial y servicios públicos pueden ayudar a planificar rutas estratégicas para los servicios de emergencia y el acceso público a los desfibriladores.</li>
+    </ul>
+</body>
+</html>
