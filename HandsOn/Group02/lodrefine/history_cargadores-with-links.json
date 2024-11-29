@@ -2623,5 +2623,45 @@
     "columnName": "OPERADOR",
     "clearData": true,
     "description": "Discard recon judgments and clear recon data for cells in column OPERADOR"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "BARRIO",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Apostol Santiago"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "ApostolSantiago"
+      }
+    ],
+    "description": "Mass edit cells in column BARRIO"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "BARRIO",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Los Rosales"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "LosRosales"
+      }
+    ],
+    "description": "Mass edit cells in column BARRIO"
   }
 ]

@@ -500,7 +500,7 @@
 
 <http://example.org/cargadores/3801> a ns1:IdPuntoDeRecarga ;
     ns1:esDe "100 kW"^^rdfs:Literal ;
-    ns1:estaEn <http://example.org/barrios/Los%20Rosales> ;
+    ns1:estaEn <http://example.org/barrios/LosRosales> ;
     ns1:gestionDe "Concesión demanial" ;
     ns1:latitud "40.34849730172464"^^xsd:float ;
     ns1:longitud "-3.690871377913514"^^xsd:float ;
@@ -626,7 +626,7 @@
 
 <http://example.org/cargadores/3822> a ns1:IdPuntoDeRecarga ;
     ns1:esDe "50 kW"^^rdfs:Literal ;
-    ns1:estaEn <http://example.org/barrios/Apostol%20Santiago> ;
+    ns1:estaEn <http://example.org/barrios/ApostolSantiago> ;
     ns1:gestionDe "Convenio cesión" ;
     ns1:latitud "40.47225181765033"^^xsd:float ;
     ns1:longitud "-3.662773297838859"^^xsd:float ;
@@ -992,7 +992,7 @@ ns1:tieneOperador a owl:ObjectProperty ;
     ns1:dentroDe <http://example.org/distritos/Latina> ;
     owl:sameAs <https://wikidata.org/entity/Q31140> .
 
-<http://example.org/barrios/Apostol%20Santiago> a ns1:Barrio ;
+<http://example.org/barrios/ApostolSantiago> a ns1:Barrio ;
     ns1:dentroDe <http://example.org/distritos/Hortaleza> ;
     owl:sameAs <https://wikidata.org/entity/Q11906303> .
 
@@ -1052,7 +1052,7 @@ ns1:tieneOperador a owl:ObjectProperty ;
     ns1:dentroDe <http://example.org/distritos/Salamanca> ;
     owl:sameAs <https://wikidata.org/entity/Q4779> .
 
-<http://example.org/barrios/Los%20Rosales> a ns1:Barrio ;
+<http://example.org/barrios/LosRosales> a ns1:Barrio ;
     ns1:dentroDe <http://example.org/distritos/Villaverde> ;
     owl:sameAs <https://wikidata.org/entity/Q10319807> .
 
