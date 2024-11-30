@@ -190,7 +190,7 @@
         rr:predicate clpr:numeroDireccion;
         rr:objectMap [
             rml:reference "direccion_vial_nro";
-            rr:datatype xsd:string
+            rr:datatype xsd:integer
         ]
     ];
     rr:predicateObjectMap [
@@ -204,14 +204,14 @@
         rr:predicate clpr:coordenadaX;
         rr:objectMap [
             rml:reference "localizacion_coordenada_x";
-            rr:datatype xsd:string
+            rr:datatype xsd:integer
         ]
     ];
     rr:predicateObjectMap [
         rr:predicate clpr:coordenadaY;
         rr:objectMap [
             rml:reference "localizacion_coordenada_y";
-            rr:datatype xsd:string
+            rr:datatype xsd:integer
         ]
     ];
     rr:predicateObjectMap [

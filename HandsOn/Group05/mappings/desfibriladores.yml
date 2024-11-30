@@ -50,7 +50,7 @@ mappings:
       - predicate: "rsc:numeroDireccion"
         objectMap:
           reference: "direccion_portal_numero"
-          datatype: "xsd:string"
+          datatype: "xsd:integer"
       - predicate: "rsc:codigoPostal"
         objectMap:
           reference: "direccion_codigo_postal"
@@ -58,11 +58,11 @@ mappings:
       - predicate: "rsc:coordenadaX"
         objectMap:
           reference: "direccion_coordenada_x"
-          datatype: "xsd:string"
+          datatype: "xsd:integer"
       - predicate: "rsc:coordenadaY"
         objectMap:
           reference: "direccion_coordenada_y"
-          datatype: "xsd:string"
+          datatype: "xsd:integer"
       - predicate: "rsc:perteneceA"
         objectMap:
           template: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#{municipio_nombre}"

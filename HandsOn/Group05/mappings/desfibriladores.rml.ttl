@@ -60,17 +60,19 @@
     ];
     rr:predicateObjectMap [
         rr:predicate rsc:tipoDireccion;
-        rr:objectMap [ rml:reference "direccion_via_codigo" ]
+        rr:objectMap [ rml:reference "direccion_via_codigo" ;
+                    rr:datatype xsd:string]
     ];
     rr:predicateObjectMap [
         rr:predicate rsc:nombreDireccion;
-        rr:objectMap [ rml:reference "direccion_via_nombre" ]
+        rr:objectMap [ rml:reference "direccion_via_nombre" ;
+                    rr:datatype xsd:string]                
     ];
     rr:predicateObjectMap [
         rr:predicate rsc:numeroDireccion;
         rr:objectMap [
             rml:reference "direccion_portal_numero";
-            rr:datatype xsd:string
+            rr:datatype xsd:integer
         ]
     ];
     rr:predicateObjectMap [
@@ -84,14 +86,14 @@
         rr:predicate rsc:coordenadaX;
         rr:objectMap [
             rml:reference "direccion_coordenada_x";
-            rr:datatype xsd:string
+            rr:datatype xsd:integer
         ]
     ];
     rr:predicateObjectMap [
         rr:predicate rsc:coordenadaY;
         rr:objectMap [
             rml:reference "direccion_coordenada_y";
-            rr:datatype xsd:string
+            rr:datatype xsd:ineteger
         ]
     ];
     rr:predicateObjectMap [
