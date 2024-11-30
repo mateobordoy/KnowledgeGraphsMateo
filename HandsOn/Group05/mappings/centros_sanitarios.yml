@@ -3,7 +3,7 @@ prefixes:
   rml: "http://semweb.mmlab.be/ns/rml#"
   ql: "http://semweb.mmlab.be/ns/rml#ql#"
   xsd: "http://www.w3.org/2001/XMLSchema#"
-  rsc: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/resources#"
+  clpr: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/classesproperties#"
   is: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#"
   rdfs: "http://www.w3.org/2000/01/rdf-schema#"
 
@@ -18,28 +18,28 @@ CentrosSanitariosMapping:
     - [rsc:idCentro, "centro_nro_registro~csv"]
     - [rsc:tipoCentro, "tipo_centro~csv"]
     - [rsc:localizadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#{direccion_completa}"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaAlergologia"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaCardiologia"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaCirugiaMayorAmbulatoria"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaCirugiaMenorAmbulatoria"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaDermatologia"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaEndocrinologia"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaEnfermeria"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaFarmacia"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaFisioterapia"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaMedicinaGeneral"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaNeumologia"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaNeurologia"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaNutricionYDietetica"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaOncologia"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaOtorrinolaringologia"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaPediatria"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaPsicologiaClinica"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaPsiquiatria"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaRehabilitacion"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaReumatologia"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaUrgencias"]
-    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#instanciaVacunacion"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#alergologia"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#cardiologia"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#cirugiamayorambulatoria"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#cirugiamenorambulatoria"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#dermatologia"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#endocrinologia"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#enfermeria"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#farmacia"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#fisioterapia"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#medicinageneral"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#neumologia"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#neurologia"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#nutricionydietetica"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#oncologia"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#otorrinolaringologia"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#pediatria"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#psicologiaclinica"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#psiquiatria"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#rehabilitacion"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#reumatologia"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#urgencias"]
+    - [rsc:especializadoEn, "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#vacunacion"]
 
 
   DireccionesMapping:
@@ -68,218 +68,218 @@ CentrosSanitariosMapping:
   AlergologiaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#alergologia_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#alergologia"
     s_type: rsc:Alergologia
     po:
-      - [rdfs:label, "Alergología_{centro_nro_registro}"]
+      - [rdfs:label, "Alergología"]
     condition:
       - "alergologia"
 
   CardiologiaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#cardiologia_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#cardiologia"
     s_type: rsc:Cardiologia
     po:
-      - [rdfs:label, "Cardiología_{centro_nro_registro}"]
+      - [rdfs:label, "Cardiología"]
     condition:
       - "cardiologia"
 
   CirugiaMayorAmbulatoriaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#cirugiamayorambulatoria_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#cirugiamayorambulatoria"
     s_type: rsc:CirugiaMayorAmbulatoria
     po:
-      - [rdfs:label, "Cirugía mayor ambulatoria_{centro_nro_registro}"]
+      - [rdfs:label, "Cirugía mayor ambulatoria"]
     condition:
       - "cirugia_mayor_ambulatoria"
 
   CirugiaMenorAmbulatoriaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#cirugiamenorambulatoria_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#cirugiamenorambulatoria"
     s_type: rsc:CirugiaMenorAmbulatoria
     po:
-      - [rdfs:label, "Cirugía menor ambulatoria_{centro_nro_registro}"]
+      - [rdfs:label, "Cirugía menor ambulatoria"]
     condition:
       - "cirugia_menor_ambulatoria"
 
   DermatologiaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#dermatologia_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#dermatologia"
     s_type: rsc:Dermatologia
     po:
-      - [rdfs:label, "Dermatología_{centro_nro_registro}"]
+      - [rdfs:label, "Dermatología"]
     condition:
       - "dermatologia"
 
   EndocrinologiaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#endocrinologia_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#endocrinologia"
     s_type: rsc:Endocrinologia
     po:
-      - [rdfs:label, "Endocrinología_{centro_nro_registro}"]
+      - [rdfs:label, "Endocrinología"]
     condition:
       - "endocrinologia"
 
   EnfermeriaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#enfermeria_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#enfermeria"
     s_type: rsc:Enfermeria
     po:
-      - [rdfs:label, "Enfermería_{centro_nro_registro}"]
+      - [rdfs:label, "Enfermería}"]
     condition:
       - "enfermeria"
 
   FarmaciaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#farmacia_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#farmacia"
     s_type: rsc:Farmacia
     po:
-      - [rdfs:label, "Farmacia_{centro_nro_registro}"]
+      - [rdfs:label, "Farmacia"]
     condition:
       - "farmacia"
 
   FisioterapiaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#fisioterapia_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#fisioterapia"
     s_type: rsc:Fisioterapia
     po:
-      - [rdfs:label, "Fisioterapia_{centro_nro_registro}"]
+      - [rdfs:label, "Fisioterapia"]
     condition:
       - "fisioterapia"
 
   MedicinaGeneralMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#medicinageneral_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#medicinageneral"
     s_type: rsc:MedicinaGeneral
     po:
-      - [rdfs:label, "Medicina general/de familia_{centro_nro_registro}"]
+      - [rdfs:label, "Medicina general/de familia"]
     condition:
       - "medicina_general"
 
   NeumologiaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#neumologia_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#neumologia"
     s_type: rsc:Neumologia
     po:
-      - [rdfs:label, "Neumología_{centro_nro_registro}"]
+      - [rdfs:label, "Neumología"]
     condition:
       - "neumologia"
 
   NeurologiaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#neurologia_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#neurologia"
     s_type: rsc:Neurologia
     po:
-      - [rdfs:label, "Neurología_{centro_nro_registro}"]
+      - [rdfs:label, "Neurología"]
     condition:
       - "neurologia"
 
   NutricionYDieteticaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#nutricionydietetica_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#nutricionydietetica"
     s_type: rsc:NutricionYDietetica
     po:
-      - [rdfs:label, "Nutrición y Dietética_{centro_nro_registro}"]
+      - [rdfs:label, "Nutrición y Dietética"]
     condition:
       - "nutricion_y_dietetica"
 
   OncologiaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#oncologia_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#oncologia"
     s_type: rsc:Oncologia
     po:
-      - [rdfs:label, "Oncología_{centro_nro_registro}"]
+      - [rdfs:label, "Oncología"]
     condition:
       - "oncologia"
 
   OtorrinolaringologiaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#otorrinolaringologia_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#otorrinolaringologia"
     s_type: rsc:Otorrinolaringologia
     po:
-      - [rdfs:label, "Otorrinolaringología_{centro_nro_registro}"]
+      - [rdfs:label, "Otorrinolaringología"]
     condition:
       - "otorrinolaringologia"
 
   PediatriaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#pediatria_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#pediatria"
     s_type: rsc:Pediatria
     po:
-      - [rdfs:label, "Pediatría_{centro_nro_registro}"]
+      - [rdfs:label, "Pediatría"]
     condition:
       - "pediatria"
 
   PsicologiaClinicaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#psicologiaclinica_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#psicologiaclinica"
     s_type: rsc:PsicologiaClinica
     po:
-      - [rdfs:label, "Psicología clínica_{centro_nro_registro}"]
+      - [rdfs:label, "Psicología clínica"]
     condition:
       - "psicologia_clinica"
 
   PsiquiatriaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#psiquiatria_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#psiquiatria"
     s_type: rsc:Psiquiatria
     po:
-      - [rdfs:label, "Psiquiatría_{centro_nro_registro}"]
+      - [rdfs:label, "Psiquiatría"]
 
   RehabilitacionMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#rehabilitacion_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#rehabilitacion"
     s_type: rsc:Rehabilitacion
     po:
-      - [rdfs:label, "Rehabilitación_{centro_nro_registro}"]
+      - [rdfs:label, "Rehabilitación"]
     condition:
       - "rehabilitacion"
 
   ReumatologiaMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#reumatologia_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#reumatologia"
     s_type: rsc:Reumatologia
     po:
-      - [rdfs:label, "Reumatología_{centro_nro_registro}"]
+      - [rdfs:label, "Reumatología"]
     condition:
       - "reumatologia"
 
   UrgenciasMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#urgencias_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#urgencias"
     s_type: rsc:Urgencias
     po:
-      - [rdfs:label, "Urgencias_{centro_nro_registro}"]
+      - [rdfs:label, "Urgencias"]
     condition:
       - "urgencias"
 
   VacunacionMapping:
     sources:
       - ['centros_sanitarios-updated-updated.csv~csv']
-    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#vacunacion_{centro_nro_registro}"
+    s: "http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#vacunacion"
     s_type: rsc:Vacunacion
     po:
-      - [rdfs:label, "Vacunación_{centro_nro_registro}"]
+      - [rdfs:label, "Vacunación"]
     condition:
       - "vacunacion"
 

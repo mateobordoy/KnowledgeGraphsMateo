@@ -2,7 +2,7 @@
 @prefix rml: <http://semweb.mmlab.be/ns/rml#> .
 @prefix ql: <http://semweb.mmlab.be/ns/rml#ql#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rsc: <http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/resources#> .
+@prefix clpr: <http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/classesproperties#> .
 @prefix is: <http://www.knowledgegraphs.com/ontology/centrosydesfibriladores/instances#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
