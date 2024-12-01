@@ -22,7 +22,7 @@ is:Calle_de_Juan_Bravo_39_28006_Madrid a clpr:Direccion ;
     clpr:coordenadaY 447600.0 .
 
 is:centro_CH0018 a clpr:CentrodeSalud ;
-    clpr:especializadoEn is:Endocrinologia ;
+    clpr:especializadoEn is:endocrinologia ;
     clpr:localizadoEn is:Direccion1 ;
     clpr:idCentro "CH0018"^^xsd:string ;
     clpr:tipoCentro "Hospital general"^^xsd:string .

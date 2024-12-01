@@ -193,68 +193,65 @@ clpr:Desfibrilador a owl:Class ;
 
 ### Instancias de las subclases de Especialidad
 
-is:Alergologia a clpr:Alergologia ;
+is:alergologia a clpr:Alergologia ;
     rdfs:label "Alergología" .
 
-is:Cardiologia a clpr:Cardiologia ;
+is:cardiologia a clpr:Cardiologia ;
     rdfs:label "Cardiología" .
 
-is:CirugiaMayorAmbulatoria a clpr:CirugiaMayorAmbulatoria ;
+is:cirugiamayorambulatoria a clpr:CirugiaMayorAmbulatoria ;
     rdfs:label "Cirugía mayor ambulatoria" .
 
-is:CirugiaMenorAmbulatoria a clpr:CirugiaMenorAmbulatoria ;
+is:cirugiamenorambulatoria a clpr:CirugiaMenorAmbulatoria ;
     rdfs:label "Cirugía menor ambulatoria" .
 
-is:Dermatologia a clpr:Dermatologia ;
+is:dermatologia a clpr:Dermatologia ;
     rdfs:label "Dermatología" .
 
-is:Endocrinologia a clpr:Endocrinologia ;
+is:endocrinologia a clpr:Endocrinologia ;
     rdfs:label "Endocrinología" .
 
-is:Enfermeria a clpr:Enfermeria ;
+is:enfermeria a clpr:Enfermeria ;
     rdfs:label "Enfermería" .
 
-is:Farmacia a clpr:Farmacia ;
+is:farmacia a clpr:Farmacia ;
     rdfs:label "Farmacia" .
 
-is:Fisioterapia a clpr:Fisioterapia ;
+is:fisioterapia a clpr:Fisioterapia ;
     rdfs:label "Fisioterapia" .
 
-is:MedicinaGeneral a clpr:MedicinaGeneral ;
+is:medicinageneral a clpr:MedicinaGeneral ;
     rdfs:label "Medicina general/de familia" .
 
-is:Neumologia a clpr:Neumologia ;
+is:neumologia a clpr:Neumologia ;
     rdfs:label "Neumología" .
 
-is:Neurologia a clpr:Neurologia ;
+is:neurologia a clpr:Neurologia ;
     rdfs:label "Neurología" .
 
-is:NutricionYDietetica a clpr:NutricionYDietetica ;
+is:nutricionydietetica a clpr:NutricionYDietetica ;
     rdfs:label "Nutrición y Dietética" .
 
-is:Oncologia a clpr:Oncologia ;
+is:oncologia a clpr:Oncologia ;
     rdfs:label "Oncología" .
 
-is:Otorrinolaringologia a clpr:Otorrinolaringologia ;
+is:otorrinolaringologia a clpr:Otorrinolaringologia ;
     rdfs:label "Otorrinolaringología" .
 
-is:Pediatria a clpr:Pediatria ;
+is:pediatria a clpr:Pediatria ;
     rdfs:label "Pediatría" .
 
-is:PsicologiaClinica a clpr:PsicologiaClinica ;
+is:ssicologiaclinica a clpr:PsicologiaClinica ;
     rdfs:label "Psicología clínica" .
 
-is:Psiquiatria a clpr:Psiquiatria ;
+is:psiquiatria a clpr:Psiquiatria ;
     rdfs:label "Psiquiatría" .
 
-is:Rehabilitacion a clpr:Rehabilitacion ;
+is:rehabilitacion a clpr:Rehabilitacion ;
     rdfs:label "Rehabilitación" .
 
-is:Reumatologia a clpr:Reumatologia ;
-    rdfs:label "Reumatología" .
-
-is:Urgencias a clpr:Urgencias ;
+is:urgencias a clpr:Urgencias ;
     rdfs:label "Urgencias" .
 
-is:Vacunacion a clpr:Vacunacion ;
+is:vacunacion a clpr:Vacunacion ;
     rdfs:label "Vacunación" .
