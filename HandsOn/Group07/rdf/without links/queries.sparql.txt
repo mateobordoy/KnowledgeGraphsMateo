@@ -1,0 +1,1185 @@
+
+# Consultas referentes a Lighting
+
+from rdflib import Graph
+
+# Definición de prefijos
+prefixes = """
+PREFIX tm: <http://turismo.mad.es/cultural/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+"""
+
+# Consultas SPARQL
+queries_lighting = [
+    # 1. Listar todos los elementos de alumbrado y su tipo
+    prefixes + """
+    SELECT ?lighting ?type
+    WHERE {
+        ?lighting a tm:Lighting .
+        ?lighting tm:hasType ?type .
+    }
+    LIMIT 10
+    """,
+    # 2. Elementos de alumbrado promovidos por un promotor específico
+    prefixes + """
+    SELECT ?lighting
+    WHERE {
+        ?lighting a tm:Lighting .
+        ?lighting tm:hasPromoter "AG OBRAS Y EQUIPAMIENTOS" .
+    }
+    LIMIT 10
+    """,
+    # 3. Listar los motivos de alumbrado utilizados en cada distrito
+    prefixes + """
+    SELECT ?district ?motive
+    WHERE {
+      ?lighting a tm:Lighting .
+      ?lighting tm:hasDistrict ?district .
+      ?lighting tm:hasMotive ?motive .
+    }
+    LIMIT 10
+    """,
+    # 4. Elementos de alumbrado registrados como nuevos
+    prefixes + """
+    SELECT ?lighting
+    WHERE {
+        ?lighting a tm:Lighting .
+        ?lighting tm:isNew "SI" .
+    }
+    LIMIT 10
+    """,
+    # 5. Obtener información completa de un alumbrado
+    prefixes + """
+    SELECT ?property ?value
+    WHERE {
+        ?lighting a tm:Lighting .
+        ?lighting ?property ?value .
+    }
+    LIMIT 10
+    """,
+    # 6. Listar todos los barrios y los elementos de alumbrado que pertenecen a ellos
+    prefixes + """
+    SELECT ?neighborhood ?lighting
+    WHERE {
+        ?lighting a tm:Lighting .
+        ?lighting tm:hasNeighborhood ?neighborhood .
+    }
+    LIMIT 10
+    """,
+    # 7. Alumbrados con longitud mayor que 500
+    prefixes + """
+    SELECT ?lighting ?length
+    WHERE {
+        ?lighting a tm:Lighting .
+        ?lighting tm:hasLength ?length .
+        FILTER(xsd:integer(?length) > 500)
+    }
+    LIMIT 10
+    """,
+    # 8. Promedio de longitud de los alumbrados en cada distrito
+    prefixes + """
+    SELECT ?district (AVG(xsd:integer(?length)) AS ?avgLength)
+    WHERE {
+        ?lighting a tm:Lighting .
+        ?lighting tm:hasDistrict ?district .
+        ?lighting tm:hasLength ?length .
+    }
+    GROUP BY ?district
+    LIMIT 10
+
+    """,
+    # 9. Consultar todos los alumbrados con un motivo específico
+    prefixes + """
+    SELECT ?lighting ?district ?neighborhood ?type
+    WHERE {
+        ?lighting a tm:Lighting .
+        ?lighting tm:hasMotive ?motive .
+        ?lighting tm:hasDistrict ?district .
+        ?lighting tm:hasNeighborhood ?neighborhood .
+        ?lighting tm:hasType ?type .
+        FILTER(?motive = "COLGANTES")
+    }
+    LIMIT 10
+    """
+]
+
+ # Consultas SPARQL (idénticas a las del archivo RDF)
+for i, query in enumerate(queries_lighting, 1):
+    print(f"Consulta {i}:")
+    for row in combined_graph.query(query):
+        print(row)
+    print()
+
+Consulta 1:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-de-espana_234'), rdflib.term.Literal('PUNTUAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-nunez-de-arce-desde-plaza-de-santa-ana_38'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/glorieta-de-bilbao_119'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-rodrigo_9'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/glorieta-de-cuatro-caminos_85'), rdflib.term.Literal('PUNTUAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/casa-del-reloj_111'), rdflib.term.Literal('PUNTUAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hacienda-de-pavones-entre-pz-del-encuentro-y-c-corregidor-alonso-de-tobar_162'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/avda-inst-libre-de-ensenanza-entre-c-alcala-y-c-vital-aza_164'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/pso-de-la-castellana-entre-raimundo-fdez-villaverde-y-gta-de-emilio-castelar_131'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/carretera-de-canillas_167'), rdflib.term.Literal('LINEAL'))
+
+Consulta 2:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/pza-del-navio_183'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-fernando-vi-entre-c-argensola-y-c-campoamor_67'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/glorieta-del-emperador-carlos-v_90'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-alcala-entre-c-arturo-soria-y-c-general-aranaz_165'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/parque-del-retiro-perimetro-estanque_239'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/baja-de-la-iglesia_151'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/conde-duque-20_116'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ascao-3_219'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/alcala-con-gran-via_56'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-eliptica_109'),)
+
+Consulta 3:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moncloa-aravaca'), rdflib.term.Literal('ABETO'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.Literal('COLGANTES'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro-chamberi'), rdflib.term.Literal('CADENETAS'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.Literal('ARCOS COMPACTOS'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tetuan-chamberi'), rdflib.term.Literal('MOTIVO NAVIDEÑO'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arganzuela'), rdflib.term.Literal('ABETO'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moratalaz'), rdflib.term.Literal('CADENETAS'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-lineal'), rdflib.term.Literal('CADENETAS'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/salamanca-chamartin-chamberi'), rdflib.term.Literal('CADENETAS'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hortaleza'), rdflib.term.Literal('CADENETAS'))
+
+Consulta 4:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-de-san-juan-de-la-cruz_108'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cjorge-juan-entre-c-serrano-y-c-velazquez_76'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/alcala-de-puerta-del-sol-a-sevilla_59'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arenal_47'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-chueca_2'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/bravo-murillo_84'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-de-canalejas_7'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/alcala-entre-pz-de-cibeles-y-puerta-de-alcala_72'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-de-colon_99'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/avda-albufera_95'),)
+
+Consulta 5:
+(rdflib.term.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/Lighting'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/isNew'), rdflib.term.Literal('NO'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasNumberOfElements'), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasStreet'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-de-espana'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasComment'), rdflib.term.Literal('ABETO NATURAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasPromoter'), rdflib.term.Literal('AG OBRAS Y EQUIPAMIENTOS'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasNeighborhood'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arguelles'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasDesigner'), rdflib.term.Literal('DM'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasText'), rdflib.term.Literal('Gran abeto natural de 19 metros de altura, adornado con 800 bolas y 200 caramelos'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasDistrict'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moncloa-aravaca'))
+
+Consulta 6:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arguelles'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-de-espana_234'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-nunez-de-arce-desde-plaza-de-santa-ana_38'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/justicia-almagro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/glorieta-de-bilbao_119'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sol'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-rodrigo_9'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/bellas-vistas'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/glorieta-de-cuatro-caminos_85'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chopera'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/casa-del-reloj_111'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fontarron'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hacienda-de-pavones-entre-pz-del-encuentro-y-c-corregidor-alonso-de-tobar_162'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/pueblo-nuevo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/avda-inst-libre-de-ensenanza-entre-c-alcala-y-c-vital-aza_164'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/castellana'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/pso-de-la-castellana-entre-raimundo-fdez-villaverde-y-gta-de-emilio-castelar_131'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/canillas'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/carretera-de-canillas_167'))
+
+Consulta 7:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/pso-de-la-castellana-entre-raimundo-fdez-villaverde-y-gta-de-emilio-castelar_131'), rdflib.term.Literal('1222', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/princesa_125'), rdflib.term.Literal('763', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sor-angela-de-la-cruz_141'), rdflib.term.Literal('669', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-orense-entre-c-raimundo-fdez-villavere-y-c-general-peron_140'), rdflib.term.Literal('631', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/lopez-de-hoyos-de-cartagena-a-alfonso-xiii_81'), rdflib.term.Literal('1008', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/alcala-de-sevilla-a-plaza-de-cibeles_60'), rdflib.term.Literal('509', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/paseo-del-prado-entre-plaza-de-neptuno-y-glorieta-del-emperador-carlos-v_254'), rdflib.term.Literal('606', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/paseo-de-recoletos-bulevar-de-cibeles-a-colon_114'), rdflib.term.Literal('575', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/paseo-de-extremadura_155'), rdflib.term.Literal('1245', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/bravo-murillo_84'), rdflib.term.Literal('972', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+Consulta 8:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moncloa-aravaca'), rdflib.term.Literal('235.1818181818181818181818182', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.Literal('165.1829268292682926829268293', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro-chamberi'), rdflib.term.Literal('265', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tetuan-chamberi'), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arganzuela'), rdflib.term.Literal('110.8', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moratalaz'), rdflib.term.Literal('174', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-lineal'), rdflib.term.Literal('235.8', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/salamanca-chamartin-chamberi'), rdflib.term.Literal('1222', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hortaleza'), rdflib.term.Literal('54', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/salamanca-ciudad-lineal'), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+
+Consulta 9:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-nunez-de-arce-desde-plaza-de-santa-ana_38'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/loreto-y-chicote_25'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/universidad'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ballesta_24'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/universidad'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/alcala-de-puerta-del-sol-a-sevilla_59'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sol'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arenal_47'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sol'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/alcala-de-sevilla-a-plaza-de-cibeles_60'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-del-angel_33'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-de-matute_40'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/espoz-y-mina-bo-letras_39'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.Literal('LINEAL'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-leon_37'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.Literal('LINEAL'))
+
+# Consultas referentes a Museum
+
+from rdflib import Graph
+
+# Definición de prefijos
+prefixes = """
+PREFIX tm: <http://turismo.mad.es/cultural/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+"""
+
+# Consultas SPARQL
+queries_museum = [
+    # 1. Listar todos los museos y sus direcciones
+    prefixes + """
+    SELECT ?museum ?address
+    WHERE {
+        ?museum a tm:Museum .
+        ?museum tm:hasAddress ?address .
+    }
+    LIMIT 10
+    """,
+    # 2. Consultar museos que están en un barrio específico
+    prefixes + """
+    SELECT ?museum
+    WHERE {
+        ?museum a tm:Museum .
+        ?museum tm:hasAddress ?address .
+        ?address tm:hasNeighborhood tm:palacio .
+    }
+    """,
+    # 3. Contar el número de museos en cada distrito
+    prefixes + """
+    SELECT ?district (COUNT(?museum) AS ?numMuseums)
+    WHERE {
+        ?museum a tm:Museum .
+        ?museum tm:hasAddress ?address .
+        ?address tm:hasDistrict ?district .
+    }
+    GROUP BY ?district
+    """,
+    # 4. Encontrar museos accesibles que tienen transporte cercano
+    prefixes + """
+    SELECT ?museum
+    WHERE {
+        ?museum a tm:Museum .
+        ?museum tm:hasAccessibility ?accessibility .
+        ?museum tm:hasNearbyTransport ?transport .
+        FILTER(?accessibility = "1")
+    }
+    """,
+    # 5. Obtener información completa de una dirección
+    prefixes + """
+    SELECT ?property ?value
+    WHERE {
+        tm:4398134475439 ?property ?value .
+    }
+    """,
+    # 6. Agrupar barrios por distrito y contar cuántos hay en cada uno
+    prefixes + """
+    SELECT ?district (COUNT(?museum) AS ?nummuseum)
+    WHERE {
+        ?museum a tm:Museum .
+        ?museum tm:hasAddress ?address .
+        ?address tm:hasDistrict ?district .
+    }
+    GROUP BY ?district
+    """,
+    # 7. Museos que están en una calle específica
+    prefixes + """
+    SELECT ?museum
+    WHERE {
+        ?museum a tm:Museum .
+        ?museum tm:hasAddress ?address .
+        ?address tm:hasStreet tm:serrano .
+    }
+    """,
+    # 8. Museos dentro de un radio de una ubicación (latitud, longitud)
+    prefixes + """
+    SELECT ?museum
+    WHERE {
+        ?museum a tm:Museum .
+        ?museum tm:hasAddress ?address .
+        ?address tm:hasLatitude ?lat .
+        ?address tm:hasLongitude ?long .
+        FILTER (
+            (xsd:decimal(?lat) - 40.4168)*(xsd:decimal(?lat) - 40.4168) +
+            (xsd:decimal(?long) - (-3.7038))*(xsd:decimal(?long) - (-3.7038)) <= 0.01
+        )
+    }
+    """,
+    # 9. Museos que están en un barrio específico
+    prefixes + """
+    SELECT ?museum
+    WHERE {
+        ?museum a tm:Museum .
+        ?museum tm:hasAddress ?address .
+        ?address tm:hasNeighborhood tm:universidad .
+    }
+    """
+]
+
+# Consultas SPARQL
+for i, query in enumerate(queries_museum, 1):
+    print(f"Consulta {i}:")
+    for row in combined_graph.query(query):
+        print(row)
+    print()
+
+Consulta 1:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio-real-de-el-pardo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4342474485823'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-america'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4387774476615'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-mineralogia'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4411334488524'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-del-romanticismo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4407254475259'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/planetario-de-madrid'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4418684471523'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-los-canos-del-peral.-estacion-de-metro-opera'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4398344474367'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-escultura-al-aire-libre-de-la-castellana'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4416784476070'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/real-basilica-san-francisco-el-grande'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4393774473603'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-la-farmacia-hispana'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4384154477348'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/casa-museo-lope-de-vega'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4408254473983'))
+
+Consulta 2:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-los-canos-del-peral.-estacion-de-metro-opera'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-la-catedral-de-la-almudena'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-san-isidro.-los-origenes-de-madrid'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/real-monasterio-de-la-encarnacion'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/real-basilica-san-francisco-el-grande'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio-real-de-madrid'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/galeria-de-la-colecciones-reales'),)
+
+Consulta 3:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuencarral-el-pardo'), rdflib.term.Literal('4', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moncloa-aravaca'), rdflib.term.Literal('9', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.Literal('28', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arganzuela'), rdflib.term.Literal('2', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/salamanca'), rdflib.term.Literal('6', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/retiro'), rdflib.term.Literal('7', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamberi'), rdflib.term.Literal('8', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamartin'), rdflib.term.Literal('2', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tetuan'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/carabanchel'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/puente-de-vallecas'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-lineal'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/barajas'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/latina'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+Consulta 4:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio-real-de-el-pardo'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-mineralogia'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-los-canos-del-peral.-estacion-de-metro-opera'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-escultura-al-aire-libre-de-la-castellana'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/real-basilica-san-francisco-el-grande'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-naval'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-nacional-thyssen-bornemisza'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-nacional-centro-de-arte-reina-sofia-%28mncars%29'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-del-ferrocarril-de-madrid'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio-real-de-madrid'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-lazaro-galdiano'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/espacio-fundacion-telefonica'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cason-del-buen-retiro.'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-historia-de-la-comunidad-judia-de-madrid'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-la-catedral-de-la-almudena'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-la-real-academia-de-bellas-artes-de-san-fernando'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-abc'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/yacimiento-paleontologico.-estacion-de-metro-carpetana'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fronton-beti-jai'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-bomberos-de-madrid'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/panteon-de-espana'),)
+
+Consulta 5:
+(rdflib.term.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/Address'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasNeighborhood'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/universidad'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasProvince'), rdflib.term.Literal('MADRID'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasLongitude'), rdflib.term.Literal('-37095381101739400', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasStreetNumber'), rdflib.term.Literal('29', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasNumberType'), rdflib.term.Literal('V'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasLatitude'), rdflib.term.Literal('4042741340671150', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasLocality'), rdflib.term.Literal('MADRID'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasPostalCode'), rdflib.term.Literal('28015', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasCoordY'), rdflib.term.Literal('4475439', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasDistrict'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasCoordX'), rdflib.term.Literal('439813', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasStreet'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/amaniel'))
+
+Consulta 6:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuencarral-el-pardo'), rdflib.term.Literal('4', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moncloa-aravaca'), rdflib.term.Literal('9', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.Literal('28', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arganzuela'), rdflib.term.Literal('2', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/salamanca'), rdflib.term.Literal('6', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/retiro'), rdflib.term.Literal('7', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamberi'), rdflib.term.Literal('8', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamartin'), rdflib.term.Literal('2', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tetuan'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/carabanchel'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/puente-de-vallecas'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-lineal'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/barajas'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/latina'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+Consulta 7:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-arqueologico-nacional'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/the-robot-museum-%28museo-del-robot%29'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-lazaro-galdiano'),)
+
+Consulta 8:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-geominero'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-historia-de-madrid'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-africano-misioneros-combonianos'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-san-isidro.-los-origenes-de-madrid'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-historico-minero-don-felipe-de-borbon-y-grecia'),)
+
+Consulta 9:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-arte-contemporaneo-de-madrid'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-abc'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/espacio-fundacion-telefonica'),)
+
+# Consultas referentes a Monument
+
+# Definición de prefijos
+prefixes = """
+PREFIX tm: <http://turismo.mad.es/cultural/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+"""
+
+# Consultas SPARQL
+queries_monument = [
+    # 1. Listar todos los monumentos y sus direcciones
+    prefixes + """
+    SELECT ?monument ?address
+    WHERE {
+        ?monument a tm:Monument .
+        ?monument tm:hasAddress ?address .
+    }
+    LIMIT 10
+    """,
+    # 2. Consultar monumentos que están en un barrio específico
+    prefixes + """
+    SELECT ?monument
+    WHERE {
+        ?monument a tm:Monument .
+        ?monument tm:hasAddress ?address .
+        ?address tm:hasNeighborhood tm:palacio .
+    }
+    LIMIT 10
+    """,
+    # 3. Contar el número de monumentos en cada distrito
+    prefixes + """
+    SELECT ?district (COUNT(?monument) AS ?nummonument)
+    WHERE {
+        ?monument a tm:Monument .
+        ?monument tm:hasAddress ?address .
+        ?address tm:hasDistrict ?district .
+    }
+    GROUP BY ?district
+    LIMIT 10
+    """,
+    # 4. Obtener información completa de un monumento
+    prefixes + """
+    SELECT ?property ?value
+    WHERE {
+        ?monument a tm:Monument .
+        ?monument ?property ?value .
+    }
+    LIMIT 10
+    """,
+    # 5. Agrupar barrios por distrito y contar cuántos hay en cada uno
+    prefixes + """
+    SELECT ?district (COUNT(?monument) AS ?nummonument)
+    WHERE {
+        ?monument a tm:Monument .
+        ?monument tm:hasAddress ?address .
+        ?address tm:hasDistrict ?district .
+    }
+    GROUP BY ?district
+    LIMIT 10
+    """,
+    # 6. Monumentos que están en una calle específica
+    prefixes + """
+    SELECT ?monument
+    WHERE {
+        ?monument a tm:Monument .
+        ?monument tm:hasAddress ?address .
+        ?address tm:hasStreet tm:castellana .
+    }
+    LIMIT 10
+    """,
+    # 7. Monumentos dentro de un radio de una ubicación (latitud, longitud)
+    prefixes + """
+    SELECT ?monument
+    WHERE {
+        ?monument a tm:Monument .
+        ?monument tm:hasAddress ?address .
+        ?address tm:hasLatitude ?lat .
+        ?address tm:hasLongitude ?long .
+        FILTER (
+            (xsd:decimal(?lat) - 40.44420091117868)*(xsd:decimal(?lat) - 40.44420091117868) +
+            (xsd:decimal(?long) - (-3.712595448820414))*(xsd:decimal(?long) - (-3.712595448820414)) <= 0.01
+        )
+    }
+    LIMIT 10
+    """,
+
+]
+
+# Consultas SPARQL
+for i, query in enumerate(queries_monument, 1):
+    print(f"Consulta {i}:")
+    for row in combined_graph.query(query):
+        print(row)
+    print()
+
+Consulta 1:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/rafael-de-leon'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4429154474805'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuentes-barrilete'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4395834480353'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hispanidad'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4308334479960'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/restos-escultoricos'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4399494476539'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/la-petite-faucille'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4415244476258'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/jacinto-benavente'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4404364473895'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/francisco-palau-y-quer'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4418174480633'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuente-circular-del-parque-rodriguez-sahagun'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4398844479345'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuente-entre-dos-escaleras-en-la-quinta-de-los-molinos'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4468154476892'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tomas-breton'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4398414474538'))
+
+Consulta 2:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/virgen-maria'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/francisco-de-asis-de-borbon'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tomas-breton'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/julian-gayarre'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/alonso-i'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/paulus'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/julian-gayarre'),)
+
+Consulta 3:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/salamanca'), rdflib.term.Literal('12', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuencarral-el-pardo'), rdflib.term.Literal('13', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moncloa-aravaca'), rdflib.term.Literal('32', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamberi'), rdflib.term.Literal('85', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.Literal('32', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamartin'), rdflib.term.Literal('42', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/san-blas-canillejas'), rdflib.term.Literal('30', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/vicalvaro'), rdflib.term.Literal('20', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/barajas'), rdflib.term.Literal('8', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-lineal'), rdflib.term.Literal('7', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+Consulta 4:
+(rdflib.term.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/Monument'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasId'), rdflib.term.Literal('409283', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasPdf'), rdflib.term.Literal('https://patrimonioypaisaje.madrid.es/FrameWork/generacionPDFMonumenta/409283.pdf?idMonumento=8cc8091d1b9c4510091d1b9c45102e085a0aRCRD&tipoMon=M'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasUrl'), rdflib.term.Literal('https://patrimonioypaisaje.madrid.es/sites/v/index.jsp?vgnextchannel=8fac3cb702aa4510VgnVCM1000008a4a900aRCRD&vgnextoid=8cc8091d1b9c4510091d1b9c45102e085a0aRCRD', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#anyURI')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasName'), rdflib.term.Literal('rafael-de-leon'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasConstructionDate'), rdflib.term.Literal('Posterior a 1982'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasSubtype'), rdflib.term.Literal('Elemento conmemorativo, Lápida'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasAddress'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4429154474805'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasDescription'), rdflib.term.Literal("Recordando el lugar en que murió en Madrid el escritor y letrista, Rafael de León y Arias de Saavedra, (1908-1982), se instaló una lápida escueta, en la que no figura la fecha de colocación. Este escritor es conocido popularmente por formar parte del trío más célebre de la copla española: Quintero, León y Quiroga; trío que fue la feliz conjunción de un dramaturgo, un poeta y un músico. Rafael de León fue un personaje perteneciente a la aristocracia sevillana, hijo de los condes de Gómara, que en su doble vida entre la alta clase social y el sufrido pueblo llano, nunca acabó de ser valorado en su justa medida. Pertenece por edad, formación y relaciones a la generación del 27, aunque una irrefrenable tendencia poética hacia la bohemia derivó su trayectoria hacia el mundo del teatro y la copla populares. Algunas de sus letras, como el cuplé 'Bajo los puentes del Sena', o las coplas 'María de la O', 'Ojos Verdes' o 'la Zarzamora' son canciones inmortales, así como sus libros de poemas que hoy tienen un valor reconocido."))
+(rdflib.term.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/Monument'))
+
+Consulta 5:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/salamanca'), rdflib.term.Literal('12', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuencarral-el-pardo'), rdflib.term.Literal('13', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moncloa-aravaca'), rdflib.term.Literal('32', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamberi'), rdflib.term.Literal('85', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.Literal('32', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamartin'), rdflib.term.Literal('42', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/san-blas-canillejas'), rdflib.term.Literal('30', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/vicalvaro'), rdflib.term.Literal('20', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/barajas'), rdflib.term.Literal('8', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-lineal'), rdflib.term.Literal('7', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+Consulta 6:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/san-isidro'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/escultura-tripode-cuzco'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/estanque-rectangular-cuzco'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/escultura-caja-laboral'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuente-del-ministerio-de-industria'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ave-fenix'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/unidades-yunta'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/francisco-pizarro'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/llama-del-peru'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/agricultor-agricultura-y-progreso'),)
+
+Consulta 7:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/rafael-de-leon'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuentes-barrilete'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/restos-escultoricos'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/la-petite-faucille'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/jacinto-benavente'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/francisco-palau-y-quer'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuente-circular-del-parque-rodriguez-sahagun'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuente-entre-dos-escaleras-en-la-quinta-de-los-molinos'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tomas-breton'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/maria-de-las-mercedes-de-borbon-y-orleans-condesa-de-barcelona'),)
+
+# Consultas referentes a Event
+
+from rdflib import Graph
+# Consultas referentes a monument
+# Definición de prefijos
+prefixes = """
+PREFIX tm: <http://turismo.mad.es/cultural/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+"""
+
+# Consultas SPARQL
+queries_event = [
+     # 1. Listar todos los eventos y sus direcciones
+    prefixes + """
+    SELECT ?event ?address
+    WHERE {
+        ?event a tm:Event .
+        ?event tm:hasAddress ?address .
+    }
+    LIMIT 10
+    """,
+    # 2. Consultar eventos que están en un barrio específico
+    prefixes + """
+    SELECT ?event
+    WHERE {
+        ?event a tm:Event .
+        ?event tm:hasActivity ?activity .
+        ?activity tm:takesPlaceAtInstallation ?installation .
+        ?installation  tm:hasAddress ?address .
+        ?address tm:hasNeighborhood tm:chopera .
+    }
+    LIMIT 10
+    """,
+    # 3. Contar el número de eventos en cada distrito
+    prefixes + """
+    SELECT ?district (COUNT(?event) AS ?numEvents)
+    WHERE {
+        ?event a tm:Event .
+        ?event tm:hasAddress ?address .
+        ?address tm:hasDistrict ?district .
+    }
+    GROUP BY ?district
+    LIMIT 10
+    """,
+    # 4. Encontrar eventos de libre acceso
+    prefixes + """
+    SELECT ?event
+    WHERE {
+        ?event a tm:Event .
+        ?event tm:hasFreeAdmission  ?admision .
+        FILTER(?admision = 1)
+    }
+    LIMIT 10
+    """,
+    # 5. Obtener información completa de una dirección
+    prefixes + """
+    SELECT ?property ?value
+    WHERE {
+        tm:440946044714220 ?property ?value .
+    }
+    LIMIT 10
+    """,
+    # 6. Agrupar barrios por distrito y contar cuántos hay en cada uno
+    prefixes + """
+    SELECT ?district (COUNT(?neighborhood) AS ?numNeighborhoods)
+    WHERE {
+        ?address tm:hasDistrict ?district .
+        ?address tm:hasNeighborhood ?neighborhood .
+    }
+    GROUP BY ?district
+    LIMIT 10
+    """,
+    # 7. Eventos que están en una calle específica
+    prefixes + """
+    SELECT ?event
+    WHERE {
+        ?event a tm:Event .
+        ?event tm:hasActivity ?activity .
+        ?activity tm:takesPlaceAtInstallation ?installation .
+        ?installation  tm:hasAddress ?address .
+        ?address tm:hasStreet tm:mantuano .
+    }
+    LIMIT 10
+    """,
+    # 8. Eventos dentro de un radio de una ubicación (latitud, longitud)
+    prefixes + """
+    SELECT ?event
+    WHERE {
+        ?event a tm:Event .
+        ?event tm:hasAddress ?address .
+        ?address tm:hasLatitude ?lat .
+        ?address tm:hasLongitude ?long .
+        FILTER (
+            (xsd:decimal(?lat) - 40.4168)*(xsd:decimal(?lat) - 40.4168) +
+            (xsd:decimal(?long) - (-3.7038))*(xsd:decimal(?long) - (-3.7038)) <= 0.01
+        )
+    }
+    LIMIT 10
+    """,
+    # 9. Eventos que están en un barrio específico
+    prefixes + """
+    SELECT ?event
+    WHERE {
+        ?event a tm:Event .
+        ?event tm:hasActivity ?activity .
+        ?activity tm:takesPlaceAtInstallation ?installation .
+        ?installation  tm:hasAddress ?address .
+        ?address tm:hasNeighborhood tm:chopera .
+    }
+    LIMIT 10
+    """
+
+]
+
+# Consultas SPARQL
+for i, query in enumerate(queries_event, 1):
+    print(f"Consulta {i}:")
+    for row in combined_graph.query(query):
+        print(row)
+    print()
+
+Consulta 1:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/parque-enrique-tierno-galvan'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/442152044715010'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/parque-de-berlin'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/442673044780910'))
+
+Consulta 2:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/historia-de-pastores'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/investigactiva'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sobre-el-bowery'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fantasia-negra'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/explora-y-juega-matadero-madrid-en-familia'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/aventuras-en-el-pais-de-las-maravillas'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/visitas-a-matadero'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/who-do-i-belong-to'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sesion-de-inauguracion-lesgaicinemad-2024'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/gran-convoy'),)
+
+Consulta 3:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arganzuela'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamartin'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+Consulta 4:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/suit-don-quijote-amaren-paquita'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/musica-laia-molins-amp-jofre-fite'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/musica-sergio-fabregas-presenta-a-plena-voz'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/coro-vox-aurea'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/pedro-conoce-a-clumsy'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/concierto-de-oboes-y-fagotes'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sueno-cumplido'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/taller-de-historia-de-madrid'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tromboneando-con-demetrio-muniz'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/musica-pop-rock-2000'),)
+
+Consulta 5:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasPostalCode'), rdflib.term.Literal('28045', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasLatitude'), rdflib.term.Literal('40.3913', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasCoordX'), rdflib.term.Literal('4409460', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasLongitude'), rdflib.term.Literal('-3.6958019999999996', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasNeighborhood'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chopera'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasNumberType'), rdflib.term.Literal('8', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasDistrict'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arganzuela'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasCoordY'), rdflib.term.Literal('44714220', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/Address'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasStreet'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/legazpi'))
+
+Consulta 6:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.Literal('147', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arganzuela'), rdflib.term.Literal('19', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-lineal'), rdflib.term.Literal('19', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuencarral-el-pardo'), rdflib.term.Literal('24', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moncloa-aravaca'), rdflib.term.Literal('41', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamberi'), rdflib.term.Literal('73', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/retiro'), rdflib.term.Literal('35', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/carabanchel'), rdflib.term.Literal('15', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamartin'), rdflib.term.Literal('49', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tetuan'), rdflib.term.Literal('33', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+Consulta 7:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/taller-remedial-english'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/owl-babies'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/taller-de-alfabetizacion-informacional-dispositivos-moviles'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/club-de-lectura-en-ingles-reading-club'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/al-son-ciudad-lineal'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/alma-de-cuba-en-chamartin'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/magia-una-decada-de-magia'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/claudette-en-chamartin'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/conferencia-teatralizada-tenorio-zorrilla-y-su-tiempo'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/conferencia-ciclo-el-impresionismo-claude-monet'),)
+
+Consulta 8:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/parque-enrique-tierno-galvan'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/parque-de-berlin'),)
+
+Consulta 9:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/historia-de-pastores'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/investigactiva'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sobre-el-bowery'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fantasia-negra'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/explora-y-juega-matadero-madrid-en-familia'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/aventuras-en-el-pais-de-las-maravillas'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/visitas-a-matadero'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/who-do-i-belong-to'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sesion-de-inauguracion-lesgaicinemad-2024'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/gran-convoy'),
+
+# Consultas referentes a Venue
+
+from rdflib import Graph
+# Consultas referentes a monument
+# Definición de prefijos
+prefixes = """
+PREFIX tm: <http://turismo.mad.es/cultural/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+"""
+
+# Consultas SPARQL
+queries_venue = [
+    # 1. Listar todas las salas y sus direcciones
+    prefixes + """
+    SELECT ?venue ?address
+    WHERE {
+        ?venue a tm:Venue .
+        ?venue tm:hasAddress ?address .
+    }
+    LIMIT 10
+    """,
+    # 2. Consultar salas que están en un barrio específico
+    prefixes + """
+    SELECT ?venue
+    WHERE {
+        ?venue a tm:Venue .
+         ?venue tm:hasAddress ?address .
+        ?address tm:hasNeighborhood tm:chopera .
+    }
+    LIMIT 10
+    """,
+    # 3. Contar el número de salas en cada distrito
+    prefixes + """
+    SELECT ?district (COUNT(?venue) AS ?numvenues)
+    WHERE {
+        ?venue a tm:Venue .
+        ?venue tm:hasAddress ?address .
+        ?address tm:hasDistrict ?district .
+    }     
+    GROUP BY ?district
+    LIMIT 10
+    """,
+    # 4. Encontrar salas accesibles que tienen transporte cercano
+    prefixes + """
+    SELECT ?venue
+    WHERE {
+        ?venue a tm:Venue .
+        ?venue tm:hasAccessibility ?accessibility .
+        ?venue tm:hasNearbyTransport ?transport .
+        FILTER(?accessibility = "1")
+    }
+    LIMIT 10
+    """,
+    # 5. Obtener información completa de una dirección
+    prefixes + """
+    SELECT ?property ?value
+    WHERE {
+        tm:4408284471551 ?property ?value .
+    }
+    LIMIT 10
+    """,
+    # 6. Agrupar barrios por distrito y contar cuántos hay en cada uno
+    prefixes + """
+    SELECT ?district (COUNT(?venue) AS ?numvenue)
+    WHERE {
+        ?venue a tm:Venue .
+        ?venue tm:hasAddress ?address .
+        ?address tm:hasDistrict ?district .
+    }
+    GROUP BY ?district
+    LIMIT 10
+    """,
+    # 7. Salas que están en una calle específica
+    prefixes + """
+    SELECT ?venue
+    WHERE {
+        ?venue a tm:Venue .
+        ?venue tm:hasAddress ?address .
+        ?address tm:hasStreet tm:principe .
+    }
+    LIMIT 10
+    """,
+    # 8. Salas dentro de un radio de una ubicación (latitud, longitud)
+    prefixes + """
+    SELECT ?venue
+    WHERE {
+        ?venue a tm:Venue .
+        ?venue tm:hasAddress ?address .
+        ?address tm:hasLatitude ?lat .
+        ?address tm:hasLongitude ?long .
+        FILTER (
+            (xsd:decimal(?lat) - 40.3776)*(xsd:decimal(?lat) - 40.3776) +
+            (xsd:decimal(?long) - (-3.6229))*(xsd:decimal(?long) - (-3.6229)) <= 0.01
+        )
+    }
+    LIMIT 10
+    """,
+    # 9. Salas que están en un barrio específico
+    prefixes + """
+    SELECT ?venue
+    WHERE {
+        ?venue a tm:Venue .
+        ?venue tm:hasAddress ?address .
+        ?address tm:hasNeighborhood tm:recoletos .
+    }
+    LIMIT 10
+    """
+]
+# Consultas SPARQL
+for i, query in enumerate(queries_venue, 1):
+    print(f"Consulta {i}:")
+    for row in combined_graph.query(query):
+        print(row)
+    print()
+
+Consulta 1:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fernan-gomez-centro-cultural-de-la-villa'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/441472044751550'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fernan-gomez-centro-cultural-de-la-villa'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4414724475155'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-monumental'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/440680044737750'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-monumental'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4406804473775'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/naves-del-espanol-matadero'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4408284471551'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-municipal-de-vallecas'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/447122044698570'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-municipal-de-vallecas'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4471224469857'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/real-teatro-de-retiro-centro-cultural-daoiz-y-velarde'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4425354472575'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-quique-san-francisco'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/4397414476139'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/nave-10-matadero-creacion-dramatica-contemporanea'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/440828044715510'))
+
+Consulta 2:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/nave-10-matadero-creacion-dramatica-contemporanea'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/naves-del-espanol-matadero'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/nave-10-matadero-creacion-dramatica-contemporanea'),)
+
+Consulta 3:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/salamanca'), rdflib.term.Literal('2', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.Literal('4', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arganzuela'), rdflib.term.Literal('5', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/villa-de-vallecas'), rdflib.term.Literal('2', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/retiro'), rdflib.term.Literal('3', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamberi'), rdflib.term.Literal('2', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moncloa-aravaca'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+Consulta 4:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-municipal-de-vallecas'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/real-teatro-de-retiro-centro-cultural-daoiz-y-velarde'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-quique-san-francisco'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-circo-price'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-municipal-de-titeres-parque-de-el-retiro'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-auditorio-casa-de-campo'),)
+
+Consulta 5:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasDistrict'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arganzuela'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasLatitude'), rdflib.term.Literal('40.39245798191536', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/Address'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasStreet'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chopera'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasLocality'), rdflib.term.Literal('MADRID'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasProvince'), rdflib.term.Literal('MADRID'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasNeighborhood'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chopera'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasLongitude'), rdflib.term.Literal('-3.6972067902718897', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#decimal')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasNumberType'), rdflib.term.Literal('V'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hasCoordX'), rdflib.term.Literal('440828', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+Consulta 6:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/salamanca'), rdflib.term.Literal('2', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro'), rdflib.term.Literal('4', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arganzuela'), rdflib.term.Literal('5', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/villa-de-vallecas'), rdflib.term.Literal('2', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/retiro'), rdflib.term.Literal('3', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/chamberi'), rdflib.term.Literal('2', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/moncloa-aravaca'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+Consulta 7:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-espanol'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-espanol'),)
+
+Consulta 8:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fernan-gomez-centro-cultural-de-la-villa'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fernan-gomez-centro-cultural-de-la-villa'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-monumental'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-monumental'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/naves-del-espanol-matadero'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-municipal-de-vallecas'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/teatro-municipal-de-vallecas'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/real-teatro-de-retiro-centro-cultural-daoiz-y-velarde'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/nave-10-matadero-creacion-dramatica-contemporanea'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/nave-10-matadero-creacion-dramatica-contemporanea'),)
+
+Consulta 9:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fernan-gomez-centro-cultural-de-la-villa'),)
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fernan-gomez-centro-cultural-de-la-villa'),)
+
+# Consultas conjuntas
+
+# Definición de prefijos comunes
+prefixes = """
+PREFIX tm: <http://turismo.mad.es/cultural/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+"""
+
+# Consultas SPARQL
+queries_conjuntas = [
+    # 1. Monumentos o museos en el mismo barrio
+    prefixes + """
+    SELECT DISTINCT ?barrio ?museo ?monumento
+    WHERE {
+        ?museo a tm:Museum .
+        ?museo tm:hasAddress ?direccion .
+        ?direccion tm:hasNeighborhood ?barrio .
+
+        ?monumento a tm:Monument .
+        ?monumento tm:hasAddress ?monumentodireccion .
+        ?monumentodireccion tm:hasNeighborhood ?barrio .
+
+    }
+    LIMIT 15
+    """,
+    # 2. Museos y luces en la misma calle
+    prefixes + """
+    SELECT DISTINCT ?neighborhood ?museo ?luces
+    WHERE {
+      ?museo a tm:Museum .
+      ?museo tm:hasAddress ?direccion .
+      ?direccion tm:hasNeighborhood ?neighborhood .
+
+      ?luces a tm:Lighting .
+      ?luces tm:hasNeighborhood ?neighborhood .
+    }
+    LIMIT 15
+    """,
+
+
+    # 3. Contar recursos por tipo en cada barrio
+    prefixes + """
+    SELECT ?neighborhood (COUNT(?museum) AS ?numMuseums) (COUNT(?lighting) AS ?numLightings)
+    WHERE {
+        OPTIONAL {
+            ?museum a tm:Museum .
+            ?museum tm:hasAddress ?museumAddress .
+            ?museumAddress tm:hasNeighborhood ?neighborhood .
+        }
+        OPTIONAL {
+            ?lighting a tm:Lighting .
+            ?lighting tm:hasAddress ?lightingAddress .
+            ?lightingAddress tm:hasNeighborhood ?neighborhood .
+        }
+    }
+    GROUP BY ?neighborhood
+    LIMIT 10
+    """,
+
+    # 4. Museos con información de iluminación relacionada
+    prefixes + """
+    SELECT ?museum ?museumName ?lighting  
+    WHERE {
+        ?museum a tm:Museum .
+        ?museum tm:hasName ?museumName .
+        ?museum tm:hasAddress ?museumAddress .
+        ?museumAddress tm:hasNeighborhood ?neighborhood .
+
+        ?lighting a tm:Lighting .     
+         
+        ?lighting  tm:hasNeighborhood ?neighborhood .
+    }
+    LIMIT 10
+    """,
+
+    # 5. Barrios con más museos y luces
+    prefixes + """
+    SELECT ?neighborhood (COUNT(?museum) + COUNT(?lighting) AS ?totalResources)
+    WHERE {
+        OPTIONAL {
+            ?museum a tm:Museum .
+            ?museum tm:hasAddress ?museumAddress .
+            ?museumAddress tm:hasNeighborhood ?neighborhood .
+        }
+        OPTIONAL {
+            ?lighting a tm:Lighting .
+            ?lighting tm:hasAddress ?lightingAddress .
+            ?lightingAddress tm:hasNeighborhood ?neighborhood .
+        }
+    }
+    GROUP BY ?neighborhood
+    ORDER BY DESC(?totalResources)
+    LIMIT 10
+    """
+]
+
+# Consultas SPARQL (idénticas a las del archivo RDF)
+for i, query in enumerate(queries_conjuntas, 1):
+    #if i == 2:
+      print(f"Consulta {i}:")
+
+      for row in combined_graph.query(query):
+          print(row)
+      print()
+
+Consulta 1:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/goya'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-casa-de-la-moneda'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/rafael-de-leon'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/almagro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-sorolla'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/la-petite-faucille'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/almagro'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fronton-beti-jai'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/la-petite-faucille'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/embajadores'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-nacional-centro-de-arte-reina-sofia-%28mncars%29'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/jacinto-benavente'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/embajadores'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/centro-cultural-la-corrala.-museo-de-artes-y-tradiciones-populares'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/jacinto-benavente'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/embajadores'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/real-monasterio-de-santa-isabel'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/jacinto-benavente'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/embajadores'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/la-casa-encendida-de-la-fundacion-montemadrid'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/jacinto-benavente'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/castilla'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-emt'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/francisco-palau-y-quer'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-los-canos-del-peral.-estacion-de-metro-opera'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tomas-breton'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/real-basilica-san-francisco-el-grande'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tomas-breton'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio-real-de-madrid'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tomas-breton'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/galeria-de-la-colecciones-reales'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tomas-breton'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-la-catedral-de-la-almudena'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tomas-breton'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/real-monasterio-de-la-encarnacion'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tomas-breton'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-san-isidro.-los-origenes-de-madrid'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/tomas-breton'))
+
+Consulta 2:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/arguelles'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-cerralbo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-de-espana_234'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/casa-museo-lope-de-vega'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-nunez-de-arce-desde-plaza-de-santa-ana_38'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-nacional-thyssen-bornemisza'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-nunez-de-arce-desde-plaza-de-santa-ana_38'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-del-reloj-grassy'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-nunez-de-arce-desde-plaza-de-santa-ana_38'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-ico'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-nunez-de-arce-desde-plaza-de-santa-ana_38'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sol'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/real-monasterio-de-las-descalzas-reales'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-rodrigo_9'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sol'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/parroquia-santa-cruz'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-rodrigo_9'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sol'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-calcografia-nacional'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-rodrigo_9'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sol'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-la-real-academia-de-bellas-artes-de-san-fernando'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-rodrigo_9'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sol'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/casita---museo-del-raton-perez'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-rodrigo_9'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/castellana'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-escultura-al-aire-libre-de-la-castellana'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/pso-de-la-castellana-entre-raimundo-fdez-villaverde-y-gta-de-emilio-castelar_131'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/castellana'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/the-robot-museum-%28museo-del-robot%29'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/pso-de-la-castellana-entre-raimundo-fdez-villaverde-y-gta-de-emilio-castelar_131'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/castellana'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-lazaro-galdiano'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/pso-de-la-castellana-entre-raimundo-fdez-villaverde-y-gta-de-emilio-castelar_131'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/universidad'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/espacio-fundacion-telefonica'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/loreto-y-chicote_25'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/universidad'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-arte-contemporaneo-de-madrid'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/loreto-y-chicote_25'))
+
+Consulta 3:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/el-pardo'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-universitaria'), rdflib.term.Literal('4', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/el-goloso'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/justicia'), rdflib.term.Literal('5', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/legazpi'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio'), rdflib.term.Literal('7', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/castellana'), rdflib.term.Literal('3', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.Literal('4', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/los-jeronimos'), rdflib.term.Literal('5', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/recoletos'), rdflib.term.Literal('1', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')), rdflib.term.Literal('0', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+Consulta 4:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio-real-de-el-pardo'), rdflib.term.Literal('palacio-real-de-el-pardo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-del-pardo_208'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-de-america'), rdflib.term.Literal('museo-de-america'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-de-cardenal-cisneros_104'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-del-romanticismo'), rdflib.term.Literal('museo-del-romanticismo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-fernando-vi-entre-c-argensola-y-c-campoamor_67'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-del-romanticismo'), rdflib.term.Literal('museo-del-romanticismo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/argensola_66'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-del-romanticismo'), rdflib.term.Literal('museo-del-romanticismo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/c-regueros_63'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-del-romanticismo'), rdflib.term.Literal('museo-del-romanticismo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-chueca_2'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-del-romanticismo'), rdflib.term.Literal('museo-del-romanticismo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/hortaleza-de-gran-via-a-hernan-cortes_5'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-del-romanticismo'), rdflib.term.Literal('museo-del-romanticismo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/plaza-de-colon_99'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-del-romanticismo'), rdflib.term.Literal('museo-del-romanticismo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/fuencarral-de-gran-via-a-hernan-cortes_4'))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/museo-del-romanticismo'), rdflib.term.Literal('museo-del-romanticismo'), rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/belen_64'))
+
+Consulta 5:
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/palacio'), rdflib.term.Literal('7', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/justicia'), rdflib.term.Literal('5', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/los-jeronimos'), rdflib.term.Literal('5', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/sol'), rdflib.term.Literal('5', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/ciudad-universitaria'), rdflib.term.Literal('4', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/cortes'), rdflib.term.Literal('4', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/embajadores'), rdflib.term.Literal('4', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/rios-rosas'), rdflib.term.Literal('4', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/castellana'), rdflib.term.Literal('3', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+(rdflib.term.URIRef('http://turismo.mad.es/cultural/resource/universidad'), rdflib.term.Literal('3', datatype=rdflib.term.URIRef('http://www.w3.org/2001/XMLSchema#integer')))
+
+
+
+
