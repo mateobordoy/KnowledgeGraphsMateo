@@ -697,5 +697,282 @@
     "op": "core/column-removal",
     "columnName": "Eliminar",
     "description": "Remove column Eliminar"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "NombreEntidad",
+    "expression": "grel:value.strip()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column NombreEntidad using expression grel:value.strip()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "NombreEntidad",
+    "expression": "grel:value.replace(\" \",\"_\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column NombreEntidad using expression grel:value.replace(\" \",\"_\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "TRANSPORTE 1 1",
+    "expression": "grel:value.strip()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column TRANSPORTE 1 1 using expression grel:value.strip()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "TRANSPORTE 1 1",
+    "expression": "grel:value.replace(\" \",\"_\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column TRANSPORTE 1 1 using expression grel:value.replace(\" \",\"_\")"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "TRANSPORTE 1 1",
+    "newColumnName": "TRANSPORTE_1",
+    "description": "Rename column TRANSPORTE 1 1 to TRANSPORTE_1"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Linea 1 1",
+    "newColumnName": "Linea_1",
+    "description": "Rename column Linea 1 1 to Linea_1"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "TRANSPORTE 2 1",
+    "newColumnName": "TRANSPORTE_2",
+    "description": "Rename column TRANSPORTE 2 1 to TRANSPORTE_2"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "TRANSPORTE_2",
+    "expression": "grel:value.replace(\" \",\"_\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column TRANSPORTE_2 using expression grel:value.replace(\" \",\"_\")"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Linea 2 1",
+    "newColumnName": "Linea_2",
+    "description": "Rename column Linea 2 1 to Linea_2"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "VIA",
+    "expression": "grel:value.replace(\" \",\"_\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column VIA using expression grel:value.replace(\" \",\"_\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "BARRIO",
+    "expression": "grel:value.replace(\" \",\"_\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column BARRIO using expression grel:value.replace(\" \",\"_\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "DISTRITO",
+    "expression": "grel:value.replace(\" \",\"_\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column DISTRITO using expression grel:value.replace(\" \",\"_\")"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "TipoEntidadWIfi",
+    "newColumnName": "TipoEntidadWifi",
+    "description": "Rename column TipoEntidadWIfi to TipoEntidadWifi"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "LOCALIDAD",
+    "newColumnName": "CIUDAD",
+    "description": "Rename column LOCALIDAD to CIUDAD"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "TRANSPORTE_1",
+    "expression": "grel:value.replace(\"í\",\"i\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column TRANSPORTE_1 using expression grel:value.replace(\"í\",\"i\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "TRANSPORTE_2",
+    "expression": "grel:value.replace(\"í\",\"i\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column TRANSPORTE_2 using expression grel:value.replace(\"í\",\"i\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "NombreEntidad",
+    "expression": "grel:value.replace(\"í\",\"i\").replace(\"á\",\"a\").replace(\"ó\",\"o\").replace(\"ú\",\"u\").replace(\"é\",\"e\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column NombreEntidad using expression grel:value.replace(\"í\",\"i\").replace(\"á\",\"a\").replace(\"ó\",\"o\").replace(\"ú\",\"u\").replace(\"é\",\"e\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "VIA",
+    "expression": "grel:value.replace(\"'\",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column VIA using expression grel:value.replace(\"'\",\"\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "NombreEntidad",
+    "expression": "grel:value.replace(\"ñ\",\"n\").replace(\"'\",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column NombreEntidad using expression grel:value.replace(\"ñ\",\"n\").replace(\"'\",\"\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "BARRIO",
+    "expression": "grel:value.replace(\"'\",\"\").replace(\"Ñ\",\"N\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column BARRIO using expression grel:value.replace(\"'\",\"\").replace(\"Ñ\",\"N\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "VIA",
+    "expression": "grel:value.replace(\"'\",\"\").replace(\"Ñ\",\"N\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column VIA using expression grel:value.replace(\"'\",\"\").replace(\"Ñ\",\"N\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "TELEFONO",
+          "expression": "value",
+          "columnName": "TELEFONO",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "No se proporciona información telefónica. El teléfono de atención a la ciudadanía es el 010 (desde fuera del municipio de Madrid: 914 800 010)",
+                "l": "No se proporciona información telefónica. El teléfono de atención a la ciudadanía es el 010 (desde fuera del municipio de Madrid: 914 800 010)"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "TELEFONO",
+    "expression": "grel:value.replace(\"No se proporciona información telefónica. El teléfono de atención a la ciudadanía es el 010 (desde fuera del municipio de Madrid: 914 800 010)\",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column TELEFONO using expression grel:value.replace(\"No se proporciona información telefónica. El teléfono de atención a la ciudadanía es el 010 (desde fuera del municipio de Madrid: 914 800 010)\",\"\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "TELEFONO",
+    "expression": "grel:value.replace(\" \",\"\").replace(\"/\",\"_\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column TELEFONO using expression grel:value.replace(\" \",\"\").replace(\"/\",\"_\")"
   }
 ]

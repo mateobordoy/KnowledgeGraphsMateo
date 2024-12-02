@@ -8,11 +8,6 @@
 base: a owl:Ontology ;
     mod:createdWith <https://chowlk.linkeddata.es/> .
 
-<http://namespace.com#ns> a owl:DatatypeProperty ;
-    rdfs:label "ns" ;
-    rdfs:domain ns:Via ;
-    rdfs:range xsd:codigoPostal .
-
 ns:accesiblidad a owl:DatatypeProperty ;
     rdfs:label "accesiblidad" ;
     rdfs:domain ns:EntidadWifi ;
@@ -27,6 +22,15 @@ ns:codigoDistrito a owl:DatatypeProperty ;
     rdfs:label "codigo distrito" ;
     rdfs:domain ns:Distrito ;
     rdfs:range xsd:string .
+
+ns:codigoPostal a owl:DatatypeProperty ;
+    rdfs:label "codigo postal" ;
+    rdfs:domain ns:Via ;
+    rdfs:range xsd:string .
+
+ns:email a owl:DatatypeProperty ;
+    rdfs:label "email" ;
+    rdfs:domain ns:EntidadWifi .
 
 ns:equipamiento a owl:DatatypeProperty ;
     rdfs:label "equipamiento" ;
@@ -63,7 +67,8 @@ ns:horario a owl:DatatypeProperty ;
 
 ns:linea a owl:DatatypeProperty ;
     rdfs:label "linea" ;
-    rdfs:domain ns:Transporte .
+    rdfs:domain ns:Transporte ;
+    rdfs:range xsd:string .
 
 ns:llegarConTransporte a owl:ObjectProperty ;
     rdfs:label "llegar con transporte" ;
@@ -90,11 +95,6 @@ ns:tenerCoordenadaY a owl:ObjectProperty ;
     rdfs:domain ns:EntidadWifi ;
     rdfs:range ns:CoordenadaY .
 
-ns:tenerEmail a owl:ObjectProperty ;
-    rdfs:label "tener email" ;
-    rdfs:domain ns:EntidadWifi ;
-    rdfs:range <http://namespace.com#Email> .
-
 ns:tenerLatitud a owl:ObjectProperty ;
     rdfs:label "tener latitud" ;
     rdfs:domain ns:EntidadWifi ;
@@ -115,21 +115,14 @@ ns:tenerTelefono a owl:ObjectProperty ;
     rdfs:domain ns:EntidadWifi ;
     rdfs:range ns:Telefono .
 
-ns:tenerURL a owl:ObjectProperty ;
-    rdfs:label "tener u r l" ;
-    rdfs:domain ns:EntidadWifi ;
-    rdfs:range <http://namespace.com#URLDeContenido> .
-
 ns:tipoNum a owl:DatatypeProperty ;
     rdfs:label "tipo num" ;
     rdfs:domain ns:Via ;
     rdfs:range xsd:string .
 
-<http://namespace.com#Email> a owl:Class ;
-    rdfs:label "Email" .
-
-<http://namespace.com#URLDeContenido> a owl:Class ;
-    rdfs:label "U R L De Contenido" .
+ns:urlDeContenido a owl:DatatypeProperty ;
+    rdfs:label "url de contenido" ;
+    rdfs:domain ns:EntidadWifi .
 
 ns:CoordenadaX a owl:Class ;
     rdfs:label "Coordenada X" .
