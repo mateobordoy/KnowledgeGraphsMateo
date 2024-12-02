@@ -16,6 +16,10 @@ base: a owl:Ontology ;
     owl:versionInfo "0.0.1" ;
     mod:createdWith <https://chowlk.linkeddata.es/> .
 
+tm:Lighting a owl:Class ;
+    rdfs:label "Lighting" ;
+    rdfs:subClassOf tm:CulturalSiteLocation .
+
 tm:Monument a owl:Class ;
     rdfs:label "Monument" ;
     rdfs:subClassOf tm:CulturalSite .
@@ -38,18 +42,13 @@ tm:hasAccessibility a owl:DatatypeProperty ;
 
 tm:hasActivity a owl:ObjectProperty ;
     rdfs:label "has activity" ;
-    rdfs:domain tm:Events ;
+    rdfs:domain tm:Event ;
     rdfs:range tm:Activity .
 
 tm:hasAddress a owl:ObjectProperty ;
     rdfs:label "has address" ;
     rdfs:domain tm:CulturalSite ;
     rdfs:range tm:Address .
-
-tm:hasAddressLocation a owl:ObjectProperty ;
-    rdfs:label "has address location" ;
-    rdfs:domain tm:Address ;
-    rdfs:range tm:Location .
 
 tm:hasAudience a owl:DatatypeProperty ;
     rdfs:label "has audience" ;
@@ -89,7 +88,7 @@ tm:hasDesigner a owl:DatatypeProperty ;
 
 tm:hasDistrict a owl:ObjectProperty ;
     rdfs:label "has district" ;
-    rdfs:domain tm:Location ;
+    rdfs:domain tm:CulturalSiteLocation ;
     rdfs:range tm:District .
 
 tm:hasDistrictCode a owl:DatatypeProperty ;
@@ -161,11 +160,6 @@ tm:hasLocality a owl:DatatypeProperty ;
     rdfs:label "has locality" ;
     rdfs:range xsd:string .
 
-tm:hasLocation a owl:ObjectProperty ;
-    rdfs:label "has location" ;
-    rdfs:domain tm:Lighting ;
-    rdfs:range tm:Location .
-
 tm:hasLongitude a owl:DatatypeProperty ;
     rdfs:label "has longitude" .
 
@@ -187,7 +181,7 @@ tm:hasNearbyTransportDescription a owl:DatatypeProperty ;
 
 tm:hasNeighborhood a owl:ObjectProperty ;
     rdfs:label "has neighborhood" ;
-    rdfs:domain tm:Location ;
+    rdfs:domain tm:CulturalSiteLocation ;
     rdfs:range tm:Neighborhood .
 
 tm:hasNeighborhoodCode a owl:DatatypeProperty ;
@@ -256,7 +250,7 @@ tm:hasStartTime a owl:DatatypeProperty ;
 
 tm:hasStreet a owl:ObjectProperty ;
     rdfs:label "has street" ;
-    rdfs:domain tm:Location ;
+    rdfs:domain tm:CulturalSiteLocation ;
     rdfs:range tm:Street .
 
 tm:hasStreetClass a owl:DatatypeProperty ;
@@ -317,18 +311,19 @@ tm:takesPlaceAtInstallation a owl:ObjectProperty ;
 
 owl:versionInfo a owl:AnnotationProperty .
 
+tm:Address a owl:Class ;
+    rdfs:label "Address" ;
+    rdfs:subClassOf tm:CulturalSiteLocation .
+
 tm:District a owl:Class ;
     rdfs:label "District" .
 
-tm:Events a owl:Class ;
-    rdfs:label "Events" .
+tm:Event a owl:Class ;
+    rdfs:label "Event" .
 
 tm:Installation a owl:Class ;
     rdfs:label "Installation" ;
     rdfs:subClassOf tm:CulturalSite .
-
-tm:Lighting a owl:Class ;
-    rdfs:label "Lighting" .
 
 tm:Neighborhood a owl:Class ;
     rdfs:label "Neighborhood" .
@@ -339,12 +334,9 @@ tm:Street a owl:Class ;
 tm:Activity a owl:Class ;
     rdfs:label "Activity" .
 
-tm:Address a owl:Class ;
-    rdfs:label "Address" .
-
 tm:CulturalSite a owl:Class ;
     rdfs:label "Cultural Site" .
 
-tm:Location a owl:Class ;
-    rdfs:label "Location" .
+tm:CulturalSiteLocation a owl:Class ;
+    rdfs:label "Cultural Site Location" .
 
