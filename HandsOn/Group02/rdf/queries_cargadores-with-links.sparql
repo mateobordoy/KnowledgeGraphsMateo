@@ -38,8 +38,11 @@ SELECT ?distrito ?wikidata WHERE {
     ?distrito owl:sameAs ?wikidata
     }
 
-# Wikidata de todos los operadores (reconciliados)
-SELECT ?operador ?wikidata WHERE {
+# Wikidata de todos los operadores reconciliados que tienen al menos un cargador en el distrito de Chamartin
+SELECT DISTINCT ?operador ?wikidata WHERE {
     ?operador rdf:type ns:Operador .
+    ?barrio ns:dentroDe distritos:Chamartin .
+    ?cargador ns:estaEn ?barrio .
+    ?cargador ns:tieneOperador ?operador .
     ?operador owl:sameAs ?wikidata
     }
