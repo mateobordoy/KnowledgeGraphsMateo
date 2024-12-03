@@ -1,5 +1,3 @@
-
-
 PREFIX ns: <http://owl-ontologies.com/ns#>
 PREFIX distritos: <http://example.org/distritos/>
 PREFIX barrios: <http://example.org/barrios/>
