@@ -10,7 +10,7 @@
 
 <#VehiculosMapping>
   rml:logicalSource [
-    rml:source "vehiculos-updated.csv" ;
+    rml:source "vehiculos-with-links.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [
@@ -36,24 +36,24 @@
 
 <#DistritosMapping>
   rml:logicalSource [
-    rml:source "vehiculos-updated.csv" ;
+    rml:source "vehiculos-with-links.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [
     rr:template "http://example.org/distritos/{DISTRITO}" ;
     rr:class ns:Distrito
-  ] .
+  ] ;
   rr:predicateObjectMap [
-        rr:predicateMap [ rr:constant owl:sameAs; rr:termType rr:IRI ];
-        rr:objectMap [
-            rr:column "same_as_wikidata_distrito";
-            rr:termType rr:IRI
-        ]
-    ].
+    rr:predicateMap [ rr:constant owl:sameAs ; rr:termType rr:IRI ] ;
+    rr:objectMap [
+      rr:column "same_as_wikidata_distrito" ;
+      rr:termType rr:IRI
+    ]
+  ] .
 
 <#BarriosMapping>
   rml:logicalSource [
-    rml:source "vehiculos-updated.csv" ;
+    rml:source "vehiculos-with-links.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [
@@ -63,18 +63,18 @@
   rr:predicateObjectMap [
     rr:predicate ns:dentroDe ;
     rr:objectMap [ rr:parentTriplesMap <#DistritosMapping> ]
-  ] .
+  ] ;
   rr:predicateObjectMap [
-    rr:predicateMap [ rr:constant owl:sameAs; rr:termType rr:IRI ];
+    rr:predicateMap [ rr:constant owl:sameAs ; rr:termType rr:IRI ] ;
     rr:objectMap [
-        rr:column "same_as_wikidata_barrio";
-        rr:termType rr:IRI
+      rr:column "same_as_wikidata_barrio" ;
+      rr:termType rr:IRI
     ]
-  ].
+  ] .
 
 <#TipoVehiculoMapping>
   rml:logicalSource [
-    rml:source "vehiculos-updated.csv" ;
+    rml:source "vehiculos-with-links.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [
@@ -84,7 +84,7 @@
 
 <#ClasificacionAmbientalMapping>
   rml:logicalSource [
-    rml:source "vehiculos-updated.csv" ;
+    rml:source "vehiculos-with-links.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [
@@ -94,7 +94,7 @@
 
 <#TipoCarburanteMapping>
   rml:logicalSource [
-    rml:source "vehiculos-updated.csv" ;
+    rml:source "vehiculos-with-links.csv" ;
     rml:referenceFormulation ql:CSV
   ] ;
   rr:subjectMap [
@@ -147,7 +147,7 @@
   ] ;
   rr:predicateObjectMap [
     rr:predicate rdfs:label ;
-    rr:object "es Un"@es
+    rr:object "Es un"@es
   ] .
 
 <#seClasificaComoProperty>
@@ -179,7 +179,7 @@
   ] ;
   rr:predicateObjectMap [
     rr:predicate rdfs:label ;
-    rr:object "Tipo de Carburante"@es
+    rr:object "Tipo de carburante"@es
   ] .
 
 <#BarrioClass>
@@ -227,7 +227,7 @@
   ] ;
   rr:predicateObjectMap [
     rr:predicate rdfs:label ;
-    rr:object "Tipo Carburante"@es
+    rr:object "Tipo carburante"@es
   ] .
 
 <#ClasificacionAmbientalClass>
@@ -243,7 +243,7 @@
   ] ;
   rr:predicateObjectMap [
     rr:predicate rdfs:label ;
-    rr:object "Clasificacion Ambiental"@es
+    rr:object "Clasificación ambiental"@es
   ] .
 
 <#TipoVehiculoClass>
@@ -259,5 +259,5 @@
   ] ;
   rr:predicateObjectMap [
     rr:predicate rdfs:label ;
-    rr:object "Tipo Vehiculo"@es
+    rr:object "Tipo de vehículo"@es
   ] .
